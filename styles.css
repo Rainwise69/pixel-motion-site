@@ -137,24 +137,33 @@ p { margin: 0 0 1em; }
 .card li { margin-bottom: .3em; }
 
 /* ---------- cartões de percurso (segmentos) ---------- */
-.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; margin-top: 2.4rem; }
+.route-intro { max-width: 52rem; }
+.route-intro .section-lead { margin-top: 1rem; }
+.paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.35rem; margin-top: 2.4rem; }
 .path-card {
-  position: relative; display: block; background: var(--bg-2); border: 1px solid var(--line);
-  border-radius: var(--radius); padding: 2rem 1.8rem; overflow: hidden;
-  transition: transform .3s ease, border-color .3s ease;
+  position: relative; display: flex; flex-direction: column; background: rgba(255, 255, 255, .88); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: clamp(1.7rem, 3vw, 2.35rem); overflow: hidden;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
 }
-.path-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--grad); }
-.path-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, .22); }
-.path-card h3 { font-size: 1.45rem; }
-.path-card > p { color: var(--dim); }
-.path-links { display: flex; flex-wrap: wrap; gap: .5rem .6rem; margin-top: 1.2rem; padding: 0; list-style: none; }
-.path-links li a {
-  display: inline-block; font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em;
-  border: 1px solid var(--line); border-radius: 999px; padding: .45em 1em; color: var(--dim); transition: .2s;
+.path-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--grad); }
+.path-card:hover { transform: translateY(-6px); border-color: rgba(11, 11, 14, .22); box-shadow: 0 22px 50px -28px rgba(11, 11, 14, .38); }
+.path-card-head { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.35rem; }
+.path-number {
+  display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; flex: none;
+  border-radius: 50%; background: var(--grad); color: #fff; font: 700 .72rem/1 var(--font-mono);
 }
-.path-links li a:hover { color: var(--text); border-color: rgba(255, 255, 255, .4); }
-.path-cta { margin-top: 1.4rem; font-weight: 700; }
-.path-cta::after { content: " →"; }
+.path-audience { margin: 0; font-family: var(--font-mono); font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+.path-card h3 { max-width: 16em; font-size: clamp(1.45rem, 2.5vw, 2rem); line-height: 1.08; }
+.path-card > p { color: var(--dim); max-width: 34em; }
+.path-benefits { display: grid; gap: .6rem; margin: .55rem 0 1.7rem; padding: 0; list-style: none; }
+.path-benefits li { position: relative; padding-left: 1.55rem; color: var(--text); font-weight: 600; font-size: .95rem; }
+.path-benefits li::before {
+  content: "✓"; position: absolute; left: 0; top: 0; font-weight: 900;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.path-cta { width: 100%; justify-content: space-between; margin-top: auto; padding-inline: 1.35rem; white-space: nowrap; }
+.path-cta::after { content: "→"; font-size: 1.15em; transition: transform .25s ease; }
+.path-cta:hover::after { transform: translateX(4px); }
 
 /* ---------- portfólio ---------- */
 .filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.6rem; }
@@ -398,6 +407,7 @@ form.is-sent + .form-success { display: block; }
 @media (max-width: 860px) {
   .inner { grid-template-columns: 1fr; }
   .site-footer { grid-template-columns: 1fr 1fr; }
+  .paths { grid-template-columns: 1fr; }
   .sales-hero, .showcase-section { grid-template-columns: 1fr; }
   .sales-hero { min-height: auto; }
   .solution-grid { grid-template-columns: 1fr; }
@@ -422,6 +432,7 @@ form.is-sent + .form-success { display: block; }
   .showcase-timeline { grid-template-columns: 1fr; }
   .showcase-section { padding-inline: 1.2rem; }
   .start-section { padding-inline: 1.2rem; }
+  .path-cta { padding-inline: 1.1rem; font-size: .86rem; }
 }
 
 /* ============================================================
