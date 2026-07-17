@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+  <!-- Avatar Instagram · Pixel Motion · monograma PM (Brand Brain Fork 3A) -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2E6BFF"/>
+      <stop offset=".38" stop-color="#FF7A2F"/>
+      <stop offset=".64" stop-color="#F5232E"/>
+      <stop offset="1" stop-color="#8B2FBF"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="320" fill="#0B0B0E"/>
+  <text x="160" y="205" text-anchor="middle"
+        font-family="Archivo, 'Arial Black', sans-serif" font-weight="900"
+        font-size="150" letter-spacing="-4" fill="url(#g)">PM</text>
+</svg>

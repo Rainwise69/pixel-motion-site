@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <!-- TEMPLATE · Capa de Reel 9:16 — overlay sobre STILL REAL.
+       No editor: coloca o frame real do vídeo por baixo desta camada; a zona tracejada é só guia (apagar).
+       Regra: texto ocupa <25% da capa; título curto; label mono. Safe-area: evitar os 96px do fundo (UI do IG). -->
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2E6BFF"/><stop offset=".38" stop-color="#FF7A2F"/>
+      <stop offset=".64" stop-color="#F5232E"/><stop offset="1" stop-color="#8B2FBF"/>
+    </linearGradient>
+    <linearGradient id="scrim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0B0B0E" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0B0B0E" stop-opacity=".92"/>
+    </linearGradient>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap');
+      .mono { font-family:'JetBrains Mono',monospace; letter-spacing:.16em; }
+      .title { font-family:'Archivo',sans-serif; font-weight:900; letter-spacing:-.01em; }
+    </style>
+  </defs>
+
+  <!-- guia: still real por baixo (apagar esta zona no editor) -->
+  <rect width="1080" height="1920" fill="#14141A"/>
+  <rect x="24" y="24" width="1032" height="1400" fill="none" stroke="#A8A6B3" stroke-opacity=".5" stroke-dasharray="14 12" rx="8"/>
+  <text x="540" y="720" class="mono" font-size="26" fill="#A8A6B3" text-anchor="middle">STILL REAL DO VÍDEO AQUI</text>
+
+  <!-- scrim inferior para legibilidade -->
+  <rect x="0" y="1200" width="1080" height="720" fill="url(#scrim)"/>
+
+  <!-- bloco de texto (faixa inferior) -->
+  <rect x="96" y="1490" width="44" height="4" rx="2" fill="url(#grad)"/>
+  <text x="158" y="1499" class="mono" font-size="24" fill="#A8A6B3">EVENTOS &amp; FESTIVAIS</text>
+  <text x="96" y="1610" class="title" font-size="88" fill="#F2F1EE">Título curto</text>
+  <text x="96" y="1706" class="title" font-size="88" fill="#F2F1EE">do <tspan fill="url(#grad)">reel</tspan>.</text>
+
+  <!-- assinatura -->
+  <text x="96" y="1790" class="mono" font-size="20" fill="#A8A6B3">PIXEL MOTION</text>
+</svg>

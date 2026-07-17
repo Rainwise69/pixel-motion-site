@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /index-old.html
+Sitemap: https://pixelmotion.pt/sitemap.xml

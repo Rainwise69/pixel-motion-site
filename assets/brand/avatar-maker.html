@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<title>Pixel Motion — Avatar PM</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+       background:#161619;color:#F2F1EE;font-family:'Archivo',system-ui,sans-serif}
+  canvas{width:280px;height:280px;border-radius:50%;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  p{font-family:monospace;font-size:.8rem;color:#A8A6B3;letter-spacing:.08em;margin:0}
+  button{background:linear-gradient(135deg,#2E6BFF,#FF7A2F,#F5232E,#8B2FBF);border:0;color:#fff;font-weight:900;
+         font-family:'Archivo',sans-serif;font-size:1rem;padding:.9em 2em;border-radius:999px;cursor:pointer}
+</style>
+</head>
+<body>
+  <canvas id="c" width="320" height="320"></canvas>
+  <p>avatar do Instagram · 320×320 · monograma PM</p>
+  <button id="dl">⬇ Descarregar PNG</button>
+<script>
+  const c=document.getElementById('c'),x=c.getContext('2d');
+  function draw(){
+    x.clearRect(0,0,320,320);
+    x.fillStyle='#0B0B0E';x.fillRect(-4,-4,328,328);
+    const g=x.createLinearGradient(45,45,275,275);
+    g.addColorStop(0,'#2E6BFF');g.addColorStop(.38,'#FF7A2F');g.addColorStop(.64,'#F5232E');g.addColorStop(1,'#8B2FBF');
+    x.fillStyle=g;x.textAlign='center';x.textBaseline='middle';
+    x.font='900 150px Archivo, "Arial Black", sans-serif';
+    try{x.letterSpacing='-4px';}catch(e){}
+    x.fillText('PM',162,172);
+  }
+  document.getElementById('dl').onclick=()=>{
+    c.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='pixel-motion-avatar-320.png';a.click();},'image/png');
+  };
+  (document.fonts?document.fonts.load('900 150px Archivo').then(()=>document.fonts.ready):Promise.resolve()).then(draw);
+  draw();
+</script>
+</body>
+</html>

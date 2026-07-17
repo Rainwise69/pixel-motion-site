@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <!-- PIXEL MOTION — Palette Board 01 · valores exatos do design system (styles.css) -->
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2E6BFF"/>
+      <stop offset=".38" stop-color="#FF7A2F"/>
+      <stop offset=".64" stop-color="#F5232E"/>
+      <stop offset="1" stop-color="#8B2FBF"/>
+    </linearGradient>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap');
+      .mono { font-family: 'JetBrains Mono', monospace; fill: #A8A6B3; letter-spacing: .14em; }
+      .title { font-family: 'Archivo', sans-serif; font-weight: 900; fill: #F2F1EE; letter-spacing: -.01em; }
+    </style>
+  </defs>
+
+  <rect width="1080" height="1080" fill="#0B0B0E"/>
+
+  <!-- cabeçalho -->
+  <rect x="80" y="88" width="44" height="4" rx="2" fill="url(#grad)"/>
+  <text x="140" y="97" class="mono" font-size="20">PIXEL MOTION — PALETTE 01</text>
+  <text x="80" y="182" class="title" font-size="64">Cores da marca</text>
+
+  <!-- swatches -->
+  <g>
+    <rect x="80"  y="250" width="136" height="190" rx="20" fill="#0B0B0E" stroke="#FFFFFF" stroke-opacity=".25"/>
+    <rect x="237" y="250" width="136" height="190" rx="20" fill="#14141A" stroke="#FFFFFF" stroke-opacity=".12"/>
+    <rect x="394" y="250" width="136" height="190" rx="20" fill="#2E6BFF"/>
+    <rect x="551" y="250" width="136" height="190" rx="20" fill="#FF7A2F"/>
+    <rect x="708" y="250" width="136" height="190" rx="20" fill="#F5232E"/>
+    <rect x="865" y="250" width="136" height="190" rx="20" fill="#8B2FBF"/>
+  </g>
+  <g font-size="17" text-anchor="middle" class="mono">
+    <text x="148" y="478">#0B0B0E</text>
+    <text x="305" y="478">#14141A</text>
+    <text x="462" y="478">#2E6BFF</text>
+    <text x="619" y="478">#FF7A2F</text>
+    <text x="776" y="478">#F5232E</text>
+    <text x="933" y="478">#8B2FBF</text>
+  </g>
+
+  <!-- gradiente -->
+  <rect x="80" y="560" width="921" height="92" rx="16" fill="url(#grad)"/>
+  <text x="540" y="700" class="mono" font-size="18" text-anchor="middle">GRADIENT 135° · #2E6BFF → #FF7A2F → #F5232E → #8B2FBF</text>
+
+  <!-- proporção 60/30/10 -->
+  <g>
+    <rect x="80"  y="790" width="506" height="140" rx="14" fill="#0B0B0E" stroke="#FFFFFF" stroke-opacity=".2"/>
+    <rect x="606" y="790" width="277" height="140" rx="14" fill="#F2F1EE"/>
+    <rect x="903" y="790" width="98"  height="140" rx="14" fill="url(#grad)"/>
+  </g>
+  <g font-size="17" class="mono" text-anchor="middle">
+    <text x="333" y="972">60 · ESCURO</text>
+    <text x="744" y="972">30 · CONTEÚDO</text>
+    <text x="952" y="972">10 · ACENTO</text>
+  </g>
+
+  <!-- rodapé -->
+  <text x="80" y="1032" class="mono" font-size="15">TIPOGRAFIA · ARCHIVO 900 / SCHIBSTED GROTESK / JETBRAINS MONO</text>
+  <text x="1001" y="1032" class="mono" font-size="15" text-anchor="end">PIXELMOTION.PT</text>
+</svg>
