@@ -656,7 +656,8 @@ body.nav-open .nav-toggle span::after { background: #F2F1EE; }
   .service-process, .service-outcomes { grid-template-columns: repeat(2,1fr); }
 }
 @media (max-width: 620px) {
-  .service-hero h1 { font-size: clamp(2.65rem,13vw,4rem); }
+  .service-hero { padding-top: 7.25rem; }
+  .service-hero h1 { font-size: clamp(2.4rem,10.8vw,3.2rem); }
   .service-process, .service-outcomes, .agent-price-grid { grid-template-columns: 1fr; }
   .service-final-cta { flex-direction: column; align-items: flex-start; }
   .service-final-cta .btn { width: 100%; }
