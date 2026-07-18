@@ -583,7 +583,7 @@ body.nav-open .nav-toggle span::after { background: #F2F1EE; }
 .service-hero-agent::before { background: radial-gradient(46rem 34rem at 90% 15%, rgba(30,190,93,.18), transparent 62%), radial-gradient(42rem 32rem at 4% 94%, rgba(46,107,255,.18), transparent 65%); }
 .service-hero-inner { position: relative; width: 100%; max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: minmax(0,1.25fr) minmax(320px,.62fr); gap: clamp(2.5rem,7vw,6rem); align-items: center; }
 .service-hero .eyebrow { color: var(--light-dim); }
-.service-hero h1 { font-size: clamp(3rem,7vw,6.4rem); max-width: 10.5em; }
+.service-hero h1 { font-size: clamp(3rem,5.4vw,5rem); max-width: 11.5em; }
 .service-lead { max-width: 45em; color: var(--light-dim); font-size: clamp(1.05rem,1.8vw,1.25rem); }
 .service-trust { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.7rem 0 2rem; }
 .service-trust span { border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: .45em .85em; color: var(--light-dim); font: 500 .68rem/1.4 var(--font-mono); }
