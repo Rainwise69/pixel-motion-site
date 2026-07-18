@@ -29,7 +29,24 @@ class Scrubber {
     this.frames = new Map(); // índice 1-based → Image (esparso em mobile)
     this.lastIndex = -1;
     this.overlays = [...this.el.querySelectorAll('[data-scrub]')];
+    this.hasStarted = false;
+    if (cfg.section === '#hero') this.start();
+    else this.observeUntilNear();
+  }
+
+  start() {
+    if (this.hasStarted) return;
+    this.hasStarted = true;
     this.probe();
+  }
+
+  observeUntilNear() {
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      observer.disconnect();
+      this.start();
+    }, { rootMargin: '800px 0px' });
+    observer.observe(this.el);
   }
 
   probe() {
@@ -44,6 +61,8 @@ class Scrubber {
     for (let i = 1; i <= frameCount; i += FRAME_STEP) {
       const img = new Image();
       if (i === 1) img.onload = () => this.firstFrame(img);
+      img.decoding = 'async';
+      img.fetchPriority = i === 1 ? 'high' : 'low';
       img.src = framePath(i);
       this.frames.set(i, img);
     }
@@ -205,13 +224,32 @@ if (filterBar) {
 const lightbox = document.querySelector('#lightbox');
 if (lightbox) {
   const frameBox = lightbox.querySelector('.lb-frame');
-  document.querySelectorAll('.work[data-video]').forEach((w) => {
-    w.addEventListener('click', () => {
-      frameBox.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${w.dataset.video}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen title="${w.querySelector('h3')?.textContent || 'Vídeo'}"></iframe>`;
+  document.querySelectorAll('.work[data-video], .work[data-instagram]').forEach((w) => {
+    const title = w.querySelector('h3')?.textContent || 'Vídeo';
+    w.tabIndex = 0;
+    w.setAttribute('role', 'button');
+    w.setAttribute('aria-label', `Ver vídeo: ${title}`);
+
+    const openVideo = () => {
+      lightbox.classList.toggle('is-vertical', Boolean(w.dataset.instagram));
+      const src = w.dataset.instagram
+        ? `https://www.instagram.com/reel/${w.dataset.instagram}/embed/`
+        : `https://www.youtube-nocookie.com/embed/${w.dataset.video}?autoplay=1`;
+      frameBox.innerHTML = `<iframe src="${src}" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="${title}"></iframe>`;
       lightbox.showModal();
+    };
+
+    w.addEventListener('click', openVideo);
+    w.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      openVideo();
     });
   });
   lightbox.querySelector('.lb-close').addEventListener('click', () => lightbox.close());
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.close(); });
-  lightbox.addEventListener('close', () => { frameBox.innerHTML = ''; });
+  lightbox.addEventListener('close', () => {
+    frameBox.innerHTML = '';
+    lightbox.classList.remove('is-vertical');
+  });
 }

@@ -3,14 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pixel Motion — Vídeo, redes sociais e estratégia | Coimbra · Centro de Portugal</title>
-  <meta name="description" content="Produtora de vídeo e comunicação em Coimbra. Vídeo profissional, gestão de redes sociais e estratégia digital para empresas, autarquias e associações do Centro de Portugal.">
+  <title>Produção de Vídeo e Comunicação em Coimbra | Pixel Motion</title>
+  <meta name="description" content="Produção de vídeo, gestão de redes sociais e estratégia digital em Coimbra para empresas, autarquias e associações do Centro de Portugal.">
   <meta name="theme-color" content="#0B0B0E">
+  <link rel="canonical" href="https://pixelmotion.pt/">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pixel Motion">
   <meta property="og:title" content="Pixel Motion — Fazemos vídeo que as pessoas param para ver.">
   <meta property="og:description" content="Vídeo, redes sociais e estratégia para empresas, autarquias e associações do Centro de Portugal.">
   <meta property="og:url" content="https://pixelmotion.pt/">
   <meta property="og:locale" content="pt_PT">
+  <meta property="og:image" content="https://pixelmotion.pt/assets/hero-poster.jpg">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
+  <meta property="og:image:alt" content="Paisagem do Centro de Portugal filmada pela Pixel Motion">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pixel Motion — Fazemos vídeo que as pessoas param para ver.">
+  <meta name="twitter:description" content="Vídeo, redes sociais e estratégia para empresas, autarquias e associações do Centro de Portugal.">
+  <meta name="twitter:image" content="https://pixelmotion.pt/assets/hero-poster.jpg">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%232E6BFF'/><stop offset='.5' stop-color='%23F5232E'/><stop offset='1' stop-color='%238B2FBF'/></linearGradient></defs><rect width='100' height='100' rx='18' fill='%230B0B0E'/><text x='50' y='68' font-size='44' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' fill='url(%23g)'>PM</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,16 +29,39 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "additionalType": "https://schema.org/ProfessionalService",
-    "name": "Pixel Motion",
-    "description": "Produtora de vídeo e comunicação: vídeo, gestão de redes sociais e estratégia digital para empresas, autarquias e associações.",
-    "url": "https://pixelmotion.pt/",
-    "email": "geral@pixelmotion.pt",
-    "telephone": "+351937555554",
-    "address": { "@type": "PostalAddress", "addressLocality": "Coimbra", "addressCountry": "PT" },
-    "areaServed": "Centro de Portugal",
-    "sameAs": ["https://instagram.com/pixel_motion_video"]
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "ProfessionalService"],
+        "@id": "https://pixelmotion.pt/#business",
+        "name": "Pixel Motion",
+        "description": "Produtora de vídeo e comunicação: vídeo, gestão de redes sociais e estratégia digital para empresas, autarquias e associações.",
+        "url": "https://pixelmotion.pt/",
+        "image": "https://pixelmotion.pt/assets/hero-poster.jpg",
+        "email": "geral@pixelmotion.pt",
+        "telephone": "+351937555554",
+        "address": { "@type": "PostalAddress", "addressLocality": "Coimbra", "addressCountry": "PT" },
+        "areaServed": { "@type": "AdministrativeArea", "name": "Centro de Portugal" },
+        "sameAs": ["https://instagram.com/pixel_motion_video"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://pixelmotion.pt/#website",
+        "url": "https://pixelmotion.pt/",
+        "name": "Pixel Motion",
+        "inLanguage": "pt-PT",
+        "publisher": { "@id": "https://pixelmotion.pt/#business" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://pixelmotion.pt/#webpage",
+        "url": "https://pixelmotion.pt/",
+        "name": "Produção de vídeo e comunicação em Coimbra | Pixel Motion",
+        "description": "Produção de vídeo, gestão de redes sociais e estratégia digital em Coimbra para empresas, autarquias e associações.",
+        "isPartOf": { "@id": "https://pixelmotion.pt/#website" },
+        "about": { "@id": "https://pixelmotion.pt/#business" },
+        "inLanguage": "pt-PT"
+      }
+    ]
   }
   </script>
   <!-- Analytics: pendente de decisão (umami/Plausible/GA4) -->
@@ -154,7 +187,7 @@
 
 <!-- ============ 4. TRABALHOS ============
      ASSETS: quando houver thumbnails, adicionar style="background-image:url('assets/works/nome.webp')" ao .thumb.
-     VÍDEOS: quando houver IDs YouTube, adicionar data-video="ID" ao .work. -->
+     VÍDEOS: usar data-video="ID" para YouTube ou data-instagram="CODE" para Reels. -->
 <section id="trabalhos" class="section gel-b">
   <div data-reveal>
     <p class="eyebrow">Trabalhos</p>
@@ -192,7 +225,7 @@
       <div class="thumb"></div><span class="badge">Campanha</span>
       <div class="meta"><h3>Campanha Autárquicas 2025 — Alvaiázere</h3><p>Vídeo para todas as freguesias do concelho. Candidatura vencedora.</p></div>
     </article>
-    <article class="work" data-cat="eventos" data-reveal>
+    <article class="work" data-cat="eventos" data-instagram="DSvjQH2ACmN" data-reveal>
       <div class="thumb"></div><span class="badge">Festival</span>
       <div class="meta"><h3>FICA — Festival de Inverno de Alvaiázere</h3><p>Aftermovie e cobertura diária do festival.</p></div>
     </article>
@@ -200,11 +233,11 @@
       <div class="thumb"></div><span class="badge">Evento</span>
       <div class="meta"><h3>Sabores de Ansião</h3><p>O evento gastronómico do concelho, nas redes de toda a gente.</p></div>
     </article>
-    <article class="work" data-cat="eventos" data-reveal>
+    <article class="work" data-cat="eventos" data-instagram="DQUwXoRAO8K" data-reveal>
       <div class="thumb"></div><span class="badge">Evento</span>
       <div class="meta"><h3>Bodo das Castanhas — Vermoil</h3><p>Tradição local registada e partilhada com impacto.</p></div>
     </article>
-    <article class="work" data-cat="eventos" data-reveal>
+    <article class="work" data-cat="eventos" data-instagram="DOyxY6OArri" data-reveal>
       <div class="thumb"></div><span class="badge">Evento</span>
       <div class="meta"><h3>Forum Romano — Santiago da Guarda</h3><p>Recriação histórica com imagem à altura.</p></div>
     </article>
