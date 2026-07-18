@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://pixelmotion.pt/projetos/fica-alvaiazere.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://pixelmotion.pt/assets/works/fica-alvaiazere.jpg</video:thumbnail_loc>
+      <video:title>FICA — Festival de Inverno de Alvaiázere</video:title>
+      <video:description>Luz, pessoas e movimento, contados de dentro. Cobertura no dia e filme para ficar.</video:description>
+      <video:player_loc allow_embed="yes">https://www.instagram.com/reel/DSvjQH2ACmN/embed/</video:player_loc>
+      <video:publication_date>2025-12-26</video:publication_date>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://pixelmotion.pt/projetos/bodo-castanhas-vermoil.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://pixelmotion.pt/assets/works/bodo-castanhas-vermoil.jpg</video:thumbnail_loc>
+      <video:title>Bodo das Castanhas — Vermoil</video:title>
+      <video:description>Três dias de música, energia e uma tradição que Vermoil mantém viva ano após ano.</video:description>
+      <video:player_loc allow_embed="yes">https://www.instagram.com/reel/DQUwXoRAO8K/embed/</video:player_loc>
+      <video:publication_date>2025-10-27</video:publication_date>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://pixelmotion.pt/projetos/forum-romano-ansiao.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://pixelmotion.pt/assets/works/forum-romano-ansiao.jpg</video:thumbnail_loc>
+      <video:title>Fórum Romano — Santiago da Guarda, Ansião</video:title>
+      <video:description>Animação, história e momentos únicos numa viagem visual à Roma Antiga.</video:description>
+      <video:player_loc allow_embed="yes">https://www.instagram.com/reel/DOyxY6OArri/embed/</video:player_loc>
+      <video:publication_date>2025-09-19</video:publication_date>
+    </video:video>
+  </url>
+</urlset>
