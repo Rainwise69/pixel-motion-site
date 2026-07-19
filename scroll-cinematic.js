@@ -193,6 +193,7 @@ document.querySelectorAll('form[data-form]').forEach((form) => {
       });
       if (!res.ok) throw new Error(String(res.status));
       form.classList.add('is-sent');
+      window.pmTrackEvent?.('generate_lead', { contact_method: 'formulario' });
     } catch {
       form.removeAttribute('data-form'); // evita loop do handler
       form.submit(); // fallback nativo → _next volta com ?enviado=1
@@ -203,7 +204,10 @@ document.querySelectorAll('form[data-form]').forEach((form) => {
 });
 if (new URLSearchParams(location.search).has('enviado')) {
   const f = document.querySelector('form[data-form], form[action^="https://formsubmit"]');
-  if (f) f.classList.add('is-sent');
+  if (f) {
+    f.classList.add('is-sent');
+    window.pmTrackEvent?.('generate_lead', { contact_method: 'formulario_fallback' });
+  }
 }
 
 /* ---------- filtros de portfólio ---------- */
