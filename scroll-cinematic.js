@@ -1,12 +1,12 @@
 /* ============================================================
    PIXEL MOTION — motor v2
-   Canvas frame-scrub + Lenis + interações do site.
+   Vídeo no hero + canvas frame-scrub + Lenis + interações do site.
    Mobile (<768px): carrega 1 em cada 2 frames (Map esparso).
    Sem frames em /frames/<secção>/ → fallback CSS automático.
    ============================================================ */
 
 const SCRUB_SECTIONS = [
-  { section: '#hero', frameCount: 140, framePath: (i) => `frames/hero/frame_${String(i).padStart(4, '0')}.webp` },
+  { section: '#hero', video: true },
   { section: '#ia',   frameCount: 159, framePath: (i) => `frames/ia/frame_${String(i).padStart(4, '0')}.jpg` },
 ];
 
@@ -25,6 +25,7 @@ class Scrubber {
     this.el = document.querySelector(cfg.section);
     if (!this.el) return;
     this.canvas = this.el.querySelector('canvas.scrub-canvas');
+    this.video = cfg.video ? this.el.querySelector('video.scrub-video') : null;
     this.cfg = cfg;
     this.frames = new Map(); // índice 1-based → Image (esparso em mobile)
     this.lastIndex = -1;
@@ -50,6 +51,16 @@ class Scrubber {
   }
 
   probe() {
+    if (this.video) {
+      this.el.classList.add('has-video');
+      if (REDUCED) {
+        this.video.removeAttribute('autoplay');
+        this.video.pause();
+      } else {
+        this.video.play().catch(() => {});
+      }
+      return;
+    }
     const test = new Image();
     test.onload = () => this.preloadAll();
     test.onerror = () => this.el.classList.add('no-frames');

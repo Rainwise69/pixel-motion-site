@@ -282,6 +282,11 @@ form.is-sent + .form-success { display: block; }
 .scrub-section .stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
 .scrub-canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .6s ease; }
 .scrub-section.has-frames .scrub-canvas { opacity: 1; }
+.scrub-video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;
+  opacity: 0; transition: opacity .6s ease; background: var(--dark);
+}
+.scrub-section.has-video .scrub-video { opacity: 1; }
 .scrub-fallback {
   position: absolute; inset: 0;
   background:

@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260718-5">
+  <link rel="stylesheet" href="styles.css?v=20260719-1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -81,11 +81,13 @@
   </nav>
 </header>
 
-<!-- ============ 1. HERO (scroll-scrub: frames/hero/ — prado→metrópole) ============ -->
+<!-- ============ 1. HERO (vídeo: território → metrópole) ============ -->
 <section id="hero" class="scrub-section">
   <div class="stage">
     <div class="scrub-fallback"></div>
-    <canvas class="scrub-canvas"></canvas>
+    <video class="scrub-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
+      <source src="assets/hero-motion.mp4" type="video/mp4">
+    </video>
     <div class="scrub-veil"></div>
 
     <div class="hero-content" data-scrub="0,0.14">
