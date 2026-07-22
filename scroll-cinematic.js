@@ -239,7 +239,7 @@ if (filterBar) {
 const lightbox = document.querySelector('#lightbox');
 if (lightbox) {
   const frameBox = lightbox.querySelector('.lb-frame');
-  document.querySelectorAll('.work[data-video], .work[data-instagram]').forEach((w) => {
+  document.querySelectorAll('.work[data-video], .work[data-instagram], .work[data-local-video]').forEach((w) => {
     const title = w.querySelector('h3')?.textContent || 'Vídeo';
     w.tabIndex = 0;
     w.setAttribute('role', 'button');
@@ -247,15 +247,24 @@ if (lightbox) {
 
     const openVideo = () => {
       lightbox.classList.toggle('is-vertical', Boolean(w.dataset.instagram));
-      const src = w.dataset.instagram
-        ? `https://www.instagram.com/reel/${w.dataset.instagram}/embed/`
-        : `https://www.youtube-nocookie.com/embed/${w.dataset.video}?autoplay=1`;
-      frameBox.innerHTML = `<iframe src="${src}" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="${title}"></iframe>`;
+      if (w.dataset.localVideo) {
+        const poster = w.dataset.poster ? ` poster="${w.dataset.poster}"` : '';
+        frameBox.innerHTML = `<video src="${w.dataset.localVideo}"${poster} controls autoplay playsinline preload="metadata" aria-label="${title}"></video>`;
+      } else {
+        const src = w.dataset.instagram
+          ? `https://www.instagram.com/reel/${w.dataset.instagram}/embed/`
+          : `https://www.youtube-nocookie.com/embed/${w.dataset.video}?autoplay=1`;
+        frameBox.innerHTML = `<iframe src="${src}" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="${title}"></iframe>`;
+      }
       lightbox.showModal();
     };
 
-    w.addEventListener('click', openVideo);
+    w.addEventListener('click', (event) => {
+      if (event.target.closest('a, button')) return;
+      openVideo();
+    });
     w.addEventListener('keydown', (event) => {
+      if (event.target.closest('a, button')) return;
       if (event.key !== 'Enter' && event.key !== ' ') return;
       event.preventDefault();
       openVideo();
