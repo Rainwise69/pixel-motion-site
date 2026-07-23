@@ -2,17 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
-    <loc>https://pixelmotion.pt/projetos/bcd-cabacos.html</loc>
-    <video:video>
-      <video:thumbnail_loc>https://pixelmotion.pt/assets/works/bcd-cabacos.jpg</video:thumbnail_loc>
-      <video:title>Bairro Comercial Digital — Cabaços</video:title>
-      <video:description>Digitalização do comércio local de Cabaços, contada negócio a negócio pela Pixel Motion.</video:description>
-      <video:content_loc>https://pixelmotion.pt/assets/videos/bcd-cabacos.mp4</video:content_loc>
-      <video:duration>62</video:duration>
-      <video:publication_date>2026-07-09</video:publication_date>
-    </video:video>
-  </url>
-  <url>
     <loc>https://pixelmotion.pt/projetos/fica-alvaiazere.html</loc>
     <video:video>
       <video:thumbnail_loc>https://pixelmotion.pt/assets/works/fica-alvaiazere.jpg</video:thumbnail_loc>
