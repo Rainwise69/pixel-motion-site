@@ -24,11 +24,20 @@
   <url>
     <loc>https://pixelmotion.pt/projetos/forum-romano-ansiao.html</loc>
     <video:video>
-      <video:thumbnail_loc>https://pixelmotion.pt/assets/works/forum-romano-ansiao.jpg</video:thumbnail_loc>
-      <video:title>Fórum Romano — Santiago da Guarda, Ansião</video:title>
-      <video:description>Animação, história e momentos únicos numa viagem visual à Roma Antiga.</video:description>
-      <video:player_loc allow_embed="yes">https://www.instagram.com/reel/DOyxY6OArri/embed/</video:player_loc>
+      <video:thumbnail_loc>https://pixelmotion.pt/assets/works/forum-romano/capa-dia-1.webp</video:thumbnail_loc>
+      <video:title>Fórum Romano — Dia 1</video:title>
+      <video:description>Personagens, mercado, artesanato e espetáculo de fogo no primeiro filme do Fórum Romano.</video:description>
+      <video:content_loc>https://pixelmotion.pt/assets/works/forum-romano/forum-romano-dia-1.mp4</video:content_loc>
       <video:publication_date>2025-09-19</video:publication_date>
+      <video:duration>59</video:duration>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://pixelmotion.pt/assets/works/forum-romano/capa-dia-2.webp</video:thumbnail_loc>
+      <video:title>Fórum Romano — Dia 2</video:title>
+      <video:description>Ofícios, jogos, participação da comunidade e recriação histórica no segundo filme do Fórum Romano.</video:description>
+      <video:content_loc>https://pixelmotion.pt/assets/works/forum-romano/forum-romano-dia-2.mp4</video:content_loc>
+      <video:publication_date>2025-09-19</video:publication_date>
+      <video:duration>60</video:duration>
     </video:video>
   </url>
 </urlset>
