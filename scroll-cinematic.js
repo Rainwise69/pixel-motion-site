@@ -1,279 +1,240 @@
-/* ============================================================
-   PIXEL MOTION — motor v2
-   Vídeo no hero + canvas frame-scrub + Lenis + interações do site.
-   Mobile (<768px): carrega 1 em cada 2 frames (Map esparso).
-   Sem frames em /frames/<secção>/ → fallback CSS automático.
-   ============================================================ */
+/* PIXEL MOTION — navegação, contactos e reprodução a pedido. */
+(() => {
+  'use strict';
 
-const SCRUB_SECTIONS = [
-  { section: '#hero', video: true },
-  { section: '#ia',   frameCount: 159, framePath: (i) => `frames/ia/frame_${String(i).padStart(4, '0')}.jpg` },
-];
+  /* O conteúdo permanece visível mesmo sem JavaScript. */
+  document.querySelectorAll('[data-reveal]').forEach((element) => element.classList.add('is-visible'));
 
-const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const FRAME_STEP = window.matchMedia('(max-width: 768px)').matches ? 2 : 1;
+  const header = document.querySelector('.site-header');
+  const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 40);
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
 
-/* ---------- Lenis ---------- */
-let lenis = null;
-if (typeof Lenis !== 'undefined' && !REDUCED) {
-  lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
-}
+  /* Menu móvel: estado semântico, Escape e ciclo de foco. */
+  const navToggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.site-nav');
+  const mobileNav = window.matchMedia('(max-width: 760px)');
+  let menuOpen = false;
 
-/* ---------- Scrubber ---------- */
-class Scrubber {
-  constructor(cfg) {
-    this.el = document.querySelector(cfg.section);
-    if (!this.el) return;
-    this.canvas = this.el.querySelector('canvas.scrub-canvas');
-    this.video = cfg.video ? this.el.querySelector('video.scrub-video') : null;
-    this.cfg = cfg;
-    this.frames = new Map(); // índice 1-based → Image (esparso em mobile)
-    this.lastIndex = -1;
-    this.overlays = [...this.el.querySelectorAll('[data-scrub]')];
-    this.hasStarted = false;
-    if (cfg.section === '#hero') this.start();
-    else this.observeUntilNear();
+  function setMenu(open, restoreFocus = false) {
+    if (!nav || !navToggle) return;
+    menuOpen = Boolean(open && mobileNav.matches);
+    document.body.classList.toggle('nav-open', menuOpen);
+    navToggle.setAttribute('aria-expanded', String(menuOpen));
+    navToggle.setAttribute('aria-label', menuOpen ? 'Fechar menu' : 'Abrir menu');
+    nav.inert = mobileNav.matches && !menuOpen;
+    if (nav.inert) nav.setAttribute('aria-hidden', 'true');
+    else nav.removeAttribute('aria-hidden');
+    if (menuOpen) nav.querySelector('a[href], button:not([disabled])')?.focus();
+    else if (restoreFocus && mobileNav.matches) navToggle.focus();
   }
 
-  start() {
-    if (this.hasStarted) return;
-    this.hasStarted = true;
-    this.probe();
-  }
-
-  observeUntilNear() {
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      observer.disconnect();
-      this.start();
-    }, { rootMargin: '800px 0px' });
-    observer.observe(this.el);
-  }
-
-  probe() {
-    if (this.video) {
-      this.el.classList.add('has-video');
-      if (REDUCED) {
-        this.video.removeAttribute('autoplay');
-        this.video.pause();
-      } else {
-        this.video.play().catch(() => {});
-      }
-      return;
-    }
-    const test = new Image();
-    test.onload = () => this.preloadAll();
-    test.onerror = () => this.el.classList.add('no-frames');
-    test.src = this.cfg.framePath(1);
-  }
-
-  preloadAll() {
-    const { frameCount, framePath } = this.cfg;
-    for (let i = 1; i <= frameCount; i += FRAME_STEP) {
-      const img = new Image();
-      if (i === 1) img.onload = () => this.firstFrame(img);
-      img.decoding = 'async';
-      img.fetchPriority = i === 1 ? 'high' : 'low';
-      img.src = framePath(i);
-      this.frames.set(i, img);
-    }
-  }
-
-  firstFrame(img) {
-    this.el.classList.add('has-frames');
-    this.resize();
-    this.draw(img);
-  }
-
-  resize() {
-    if (!this.canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    this.canvas.width = this.canvas.clientWidth * dpr;
-    this.canvas.height = this.canvas.clientHeight * dpr;
-    this.lastIndex = -1;
-  }
-
-  draw(img) {
-    if (!this.canvas || !img || !img.naturalWidth) return;
-    const ctx = this.canvas.getContext('2d');
-    const cw = this.canvas.width, ch = this.canvas.height;
-    const s = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
-    const w = img.naturalWidth * s, h = img.naturalHeight * s;
-    ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
-  }
-
-  update() {
-    if (!this.el) return;
-    const rect = this.el.getBoundingClientRect();
-    const vh = window.innerHeight;
-    const total = rect.height - vh;
-    if (total <= 0) return;
-    const progress = Math.min(Math.max(-rect.top / total, 0), 1);
-
-    if (this.frames.size) {
-      const raw = 1 + Math.round(progress * (this.cfg.frameCount - 1));
-      const idx = raw - ((raw - 1) % FRAME_STEP); // snap ao frame carregado
-      if (idx !== this.lastIndex) {
-        const img = this.frames.get(idx);
-        if (img && img.complete && img.naturalWidth) {
-          this.draw(img);
-          this.lastIndex = idx;
+  if (nav && navToggle) {
+    nav.id = nav.id || 'site-navigation';
+    navToggle.setAttribute('aria-controls', nav.id);
+    navToggle.addEventListener('click', () => setMenu(!menuOpen, menuOpen));
+    nav.addEventListener('click', (event) => {
+      const link = event.target.closest('a[href]');
+      if (!link) return;
+      const wasOpen = menuOpen;
+      setMenu(false);
+      const href = link.getAttribute('href');
+      if (wasOpen && href.startsWith('#')) {
+        const target = document.getElementById(href.slice(1));
+        if (target) {
+          target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
         }
       }
-    }
-
-    for (const o of this.overlays) {
-      const [a, b] = o.dataset.scrub.split(',').map(Number);
-      const span = (b - a) || 1;
-      const local = (progress - a) / span;
-      let op = 0;
-      if (local > 0 && local < 1) {
-        op = local < 0.25 ? local / 0.25 : local > 0.75 ? (1 - local) / 0.25 : 1;
+    });
+    document.addEventListener('keydown', (event) => {
+      if (!menuOpen) return;
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setMenu(false, true);
+      } else if (event.key === 'Tab') {
+        const controls = [navToggle, ...nav.querySelectorAll('a[href], button:not([disabled])')];
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && (document.activeElement === first || !controls.includes(document.activeElement))) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && (document.activeElement === last || !controls.includes(document.activeElement))) {
+          event.preventDefault();
+          first.focus();
+        }
       }
-      if (a === 0) op = local >= 1 ? 0 : Math.min(1, (1 - local) / 0.35);
-      o.style.opacity = op.toFixed(3);
-      o.style.transform = `translateY(${((1 - op) * 14).toFixed(1)}px)`;
-      o.style.pointerEvents = op > 0.5 ? 'auto' : 'none';
-    }
+    });
+    mobileNav.addEventListener('change', () => {
+      const focusWasInNav = nav.contains(document.activeElement);
+      const focusWasOnToggle = document.activeElement === navToggle;
+      setMenu(false, focusWasInNav);
+      if (!mobileNav.matches && focusWasOnToggle) nav.querySelector('a[href]')?.focus();
+    });
+    setMenu(false);
   }
-}
 
-const scrubbers = SCRUB_SECTIONS.map((c) => new Scrubber(c)).filter((s) => s.el);
-
-function frame(time) {
-  if (lenis) lenis.raf(time);
-  for (const s of scrubbers) s.update();
-  requestAnimationFrame(frame);
-}
-requestAnimationFrame(frame);
-window.addEventListener('resize', () => scrubbers.forEach((s) => s.resize()));
-
-/* ---------- reveal ---------- */
-const revealObs = new IntersectionObserver(
-  (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('is-visible')),
-  { threshold: 0.15 }
-);
-document.querySelectorAll('[data-reveal]').forEach((el) => revealObs.observe(el));
-
-/* ---------- header ---------- */
-const header = document.querySelector('.site-header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('is-scrolled', window.scrollY > 40);
-}, { passive: true });
-
-/* ---------- menu mobile ---------- */
-const navToggle = document.querySelector('.nav-toggle');
-if (navToggle) navToggle.addEventListener('click', () => {
-  const open = document.body.classList.toggle('nav-open');
-  navToggle.setAttribute('aria-expanded', String(open));
-});
-
-/* ---------- escolha comercial ---------- */
-document.querySelectorAll('[data-solution]').forEach((link) => {
-  link.addEventListener('click', () => {
-    const select = document.querySelector('#f-solucao');
-    if (select) select.value = link.dataset.solution || '';
-  });
-});
-
-/* ---------- âncoras suaves ---------- */
-document.querySelectorAll('a[href^="#"]').forEach((a) => {
-  a.addEventListener('click', (e) => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (!target) return;
-    e.preventDefault();
-    document.body.classList.remove('nav-open');
-    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
-    if (lenis) lenis.scrollTo(target, { offset: 0 });
-    else target.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' });
-  });
-});
-
-/* ---------- formulários (formsubmit.co AJAX + fallback nativo) ---------- */
-document.querySelectorAll('form[data-form]').forEach((form) => {
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (form.querySelector('[name="_honey"]')?.value) return; // bot
-    const btn = form.querySelector('button[type="submit"]');
-    if (btn) btn.disabled = true;
-    try {
-      const res = await fetch('https://formsubmit.co/ajax/geral@pixelmotion.pt', {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: new FormData(form),
-      });
-      if (!res.ok) throw new Error(String(res.status));
-      form.classList.add('is-sent');
-      window.pmTrackEvent?.('generate_lead', { contact_method: 'formulario' });
-    } catch {
-      form.removeAttribute('data-form'); // evita loop do handler
-      form.submit(); // fallback nativo → _next volta com ?enviado=1
-    } finally {
-      if (btn) btn.disabled = false;
-    }
-  });
-});
-if (new URLSearchParams(location.search).has('enviado')) {
-  const f = document.querySelector('form[data-form], form[action^="https://formsubmit"]');
-  if (f) {
-    f.classList.add('is-sent');
-    window.pmTrackEvent?.('generate_lead', { contact_method: 'formulario_fallback' });
-  }
-}
-
-/* ---------- filtros de portfólio ---------- */
-const filterBar = document.querySelector('[data-filters]');
-if (filterBar) {
-  filterBar.addEventListener('click', (e) => {
-    const btn = e.target.closest('button[data-filter]');
-    if (!btn) return;
-    filterBar.querySelectorAll('button').forEach((b) => b.classList.toggle('is-active', b === btn));
-    const f = btn.dataset.filter;
-    document.querySelectorAll('.work').forEach((w) => {
-      w.hidden = f !== 'todos' && w.dataset.cat !== f;
+  document.querySelectorAll('[data-solution]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const select = document.querySelector('#f-solucao');
+      if (select) select.value = link.dataset.solution || '';
     });
   });
-}
 
-/* ---------- lightbox de vídeo (facade: iframe só ao clique) ---------- */
-const lightbox = document.querySelector('#lightbox');
-if (lightbox) {
-  const frameBox = lightbox.querySelector('.lb-frame');
-  document.querySelectorAll('.work[data-video], .work[data-instagram], .work[data-local-video]').forEach((w) => {
-    const title = w.querySelector('h3')?.textContent || 'Vídeo';
-    w.tabIndex = 0;
-    w.setAttribute('role', 'button');
-    w.setAttribute('aria-label', `Ver vídeo: ${title}`);
+  /* Uma tentativa de envio de cada vez; sem reenvio automático em caso de erro. */
+  document.querySelectorAll('form[data-form]').forEach((form) => {
+    let submitting = false;
+    let submitted = false;
+    const button = form.querySelector('button[type="submit"]');
+    const status = document.createElement('p');
+    status.className = 'form-status full';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    status.hidden = true;
+    form.appendChild(status);
+    const success = form.nextElementSibling?.matches('.form-success') ? form.nextElementSibling : null;
+    if (success) {
+      success.setAttribute('role', 'status');
+      success.setAttribute('aria-live', 'polite');
+      success.setAttribute('tabindex', '-1');
+    }
 
-    const openVideo = () => {
-      lightbox.classList.toggle('is-vertical', Boolean(w.dataset.instagram));
-      if (w.dataset.localVideo) {
-        const poster = w.dataset.poster ? ` poster="${w.dataset.poster}"` : '';
-        frameBox.innerHTML = `<video src="${w.dataset.localVideo}"${poster} controls autoplay playsinline preload="metadata" aria-label="${title}"></video>`;
-      } else {
-        const src = w.dataset.instagram
-          ? `https://www.instagram.com/reel/${w.dataset.instagram}/embed/`
-          : `https://www.youtube-nocookie.com/embed/${w.dataset.video}?autoplay=1`;
-        frameBox.innerHTML = `<iframe src="${src}" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="${title}"></iframe>`;
-      }
-      lightbox.showModal();
-    };
-
-    w.addEventListener('click', (event) => {
-      if (event.target.closest('a, button')) return;
-      openVideo();
-    });
-    w.addEventListener('keydown', (event) => {
-      if (event.target.closest('a, button')) return;
-      if (event.key !== 'Enter' && event.key !== ' ') return;
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      openVideo();
+      if (submitting || submitted || form.querySelector('[name="_honey"]')?.value) return;
+      if (!form.reportValidity()) return;
+      submitting = true;
+      if (button) button.disabled = true;
+      form.setAttribute('aria-busy', 'true');
+      status.hidden = false;
+      status.classList.remove('is-error');
+      status.setAttribute('role', 'status');
+      status.setAttribute('aria-live', 'polite');
+      status.textContent = 'A enviar a sua mensagem…';
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 20000);
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/geral@pixelmotion.pt', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+          signal: controller.signal,
+        });
+        const result = await response.json();
+        if (!response.ok || ![true, 'true'].includes(result?.success)) {
+          status.textContent = 'O serviço não confirmou o envio. Os seus dados continuam no formulário. Pode tentar novamente ou contactar-nos por email ou WhatsApp.';
+          status.classList.add('is-error');
+          status.setAttribute('role', 'alert');
+          status.setAttribute('aria-live', 'assertive');
+          return;
+        }
+        submitted = true;
+        if (success) {
+          form.classList.add('is-sent');
+          success.focus({ preventScroll: true });
+        } else {
+          status.textContent = 'Mensagem enviada. Respondemos em 24h úteis. Obrigado!';
+        }
+        window.pmTrackEvent?.('generate_lead', { contact_method: 'formulario', form_page: location.pathname });
+      } catch {
+        status.textContent = 'Não conseguimos confirmar o envio. Para evitar repetir o pedido, contacte-nos por email ou WhatsApp. Os seus dados continuam aqui.';
+        status.classList.add('is-error');
+        status.setAttribute('role', 'alert');
+        status.setAttribute('aria-live', 'assertive');
+      } finally {
+        window.clearTimeout(timeout);
+        submitting = false;
+        form.removeAttribute('aria-busy');
+        if (button) button.disabled = submitted;
+      }
     });
   });
-  lightbox.querySelector('.lb-close').addEventListener('click', () => lightbox.close());
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.close(); });
-  lightbox.addEventListener('close', () => {
-    frameBox.innerHTML = '';
-    lightbox.classList.remove('is-vertical');
+  // Um parâmetro no endereço não comprova que o serviço recebeu uma mensagem.
+  // O retorno nativo do FormSubmit continua disponível quando o JavaScript está desligado.
+
+  const filterBar = document.querySelector('[data-filters]');
+  if (filterBar) {
+    const buttons = [...filterBar.querySelectorAll('button[data-filter]')];
+    buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.classList.contains('is-active'))));
+    filterBar.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-filter]');
+      if (!button) return;
+      buttons.forEach((item) => {
+        item.classList.toggle('is-active', item === button);
+        item.setAttribute('aria-pressed', String(item === button));
+      });
+      document.querySelectorAll('.work').forEach((work) => {
+        work.hidden = button.dataset.filter !== 'todos' && work.dataset.cat !== button.dataset.filter;
+      });
+    });
+  }
+
+  function createEmbed(src, title) {
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.title = title;
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.loading = 'eager';
+    return iframe;
+  }
+
+  /* As páginas de projeto só contactam o Instagram após uma escolha explícita. */
+  document.querySelectorAll('.video-facade[data-instagram]').forEach((facade) => {
+    facade.querySelector('.video-facade-trigger')?.addEventListener('click', () => {
+      const iframe = createEmbed(
+        `https://www.instagram.com/reel/${encodeURIComponent(facade.dataset.instagram)}/embed/`,
+        facade.dataset.title || 'Vídeo do projeto',
+      );
+      facade.replaceChildren(iframe);
+      iframe.focus();
+    }, { once: true });
   });
-}
+
+  const lightbox = document.querySelector('#lightbox');
+  if (lightbox) {
+    const frameBox = lightbox.querySelector('.lb-frame');
+    document.querySelectorAll('.work[data-video], .work[data-instagram], .work[data-local-video]').forEach((work) => {
+      const title = work.querySelector('h3')?.textContent || 'Vídeo';
+      work.tabIndex = 0;
+      work.setAttribute('role', 'button');
+      work.setAttribute('aria-label', `Ver vídeo: ${title}`);
+      const openVideo = () => {
+        lightbox.classList.toggle('is-vertical', Boolean(work.dataset.instagram));
+        let player;
+        if (work.dataset.localVideo) {
+          player = document.createElement('video');
+          player.src = work.dataset.localVideo;
+          if (work.dataset.poster) player.poster = work.dataset.poster;
+          player.controls = true;
+          player.autoplay = true;
+          player.playsInline = true;
+          player.preload = 'metadata';
+          player.setAttribute('aria-label', title);
+        } else {
+          const src = work.dataset.instagram
+            ? `https://www.instagram.com/reel/${encodeURIComponent(work.dataset.instagram)}/embed/`
+            : `https://www.youtube-nocookie.com/embed/${encodeURIComponent(work.dataset.video)}?autoplay=1`;
+          player = createEmbed(src, title);
+        }
+        frameBox.replaceChildren(player);
+        work.focus();
+        lightbox.showModal();
+      };
+      work.addEventListener('click', (event) => {
+        if (!event.target.closest('a, button')) openVideo();
+      });
+      work.addEventListener('keydown', (event) => {
+        if (event.target.closest('a, button') || !['Enter', ' '].includes(event.key)) return;
+        event.preventDefault();
+        openVideo();
+      });
+    });
+    lightbox.querySelector('.lb-close')?.addEventListener('click', () => lightbox.close());
+    lightbox.addEventListener('click', (event) => { if (event.target === lightbox) lightbox.close(); });
+    lightbox.addEventListener('close', () => {
+      frameBox.replaceChildren();
+      lightbox.classList.remove('is-vertical');
+    });
+  }
+})();
