@@ -6,6 +6,7 @@
   const isProjectPage = location.pathname.includes('/projetos/');
   const privacyUrl = `${isProjectPage ? '../' : ''}privacidade.html`;
   let analyticsLoaded = false;
+  let currentConsent = getConsent();
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag() {
@@ -37,9 +38,10 @@
   }
 
   function loadAnalytics() {
+    window[`ga-disable-${MEASUREMENT_ID}`] = false;
+    window.gtag('consent', 'update', { analytics_storage: 'granted' });
     if (analyticsLoaded) return;
     analyticsLoaded = true;
-    window.gtag('consent', 'update', { analytics_storage: 'granted' });
     window.gtag('js', new Date());
     window.gtag('config', MEASUREMENT_ID, {
       anonymize_ip: true,
@@ -54,7 +56,7 @@
   }
 
   window.pmTrackEvent = (name, parameters = {}) => {
-    if (getConsent() !== 'granted') return;
+    if (currentConsent !== 'granted') return;
     loadAnalytics();
     window.gtag('event', name, {
       page_path: `${location.pathname}${location.search}`,
@@ -63,9 +65,13 @@
   };
 
   function setConsent(value) {
+    currentConsent = value;
     saveConsent(value);
     if (value === 'granted') loadAnalytics();
-    else window.gtag('consent', 'update', { analytics_storage: 'denied' });
+    else {
+      window[`ga-disable-${MEASUREMENT_ID}`] = true;
+      window.gtag('consent', 'update', { analytics_storage: 'denied' });
+    }
     document.querySelector('.pm-consent')?.remove();
   }
 
@@ -110,17 +116,17 @@
     else if (href.startsWith('tel:')) contactMethod = 'telefone';
     if (!contactMethod) return;
 
-    window.pmTrackEvent('generate_lead', {
+    window.pmTrackEvent('contact_click', {
       contact_method: contactMethod,
       link_text: (link.textContent || '').trim().slice(0, 100),
     });
   }
 
-  if (getConsent() === 'granted') loadAnalytics();
+  if (currentConsent === 'granted') loadAnalytics();
 
   document.addEventListener('DOMContentLoaded', () => {
     addPrivacyControl();
     document.addEventListener('click', trackContactClicks, { capture: true });
-    if (!getConsent()) showConsent();
+    if (!currentConsent) showConsent();
   });
 })();

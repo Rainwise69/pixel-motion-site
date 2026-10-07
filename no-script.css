@@ -1,0 +1,12 @@
+/* Navegação e conteúdo continuam acessíveis sem JavaScript. */
+[data-reveal] { opacity: 1; transform: none; }
+.site-header { position: static; background: #0B0B0E; color: #F2F1EE; }
+body .site-header .logo, body .site-header .site-nav a:not(.btn) { color: #F2F1EE; }
+.nav-toggle { display: none !important; }
+.filters, .video-facade-trigger { display: none; }
+.video-facade { background: #0B0B0E; }
+.home-hero, .page-hero, .case-hero, .service-hero { padding-top: 3rem; }
+@media (max-width: 760px) {
+  .site-header { display: block; }
+  .site-nav { position: static; display: flex; flex-direction: row; justify-content: flex-start; flex-wrap: wrap; gap: .75rem 1.2rem; margin-top: 1rem; font-size: .92rem; opacity: 1; visibility: visible; pointer-events: auto; background: transparent; }
+}
