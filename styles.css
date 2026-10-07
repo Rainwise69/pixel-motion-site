@@ -805,3 +805,19 @@ main:focus { outline: none; }
 .service-price-card .offer-price small, .service-price-card .offer-monthly { color: var(--dim); }
 .service-price-card .offer-kicker, .service-label, .solution-problem, .service-process span { color: #B3172C; }
 .logo .grad-text { background-image: var(--grad); }
+.work-image-screen { background: #F4F1E9; }
+.work-image-screen img { object-fit: contain; }
+.platform-grid { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); align-items: center; gap: clamp(2rem,5vw,4rem); }
+.platform-section .section-title { font-size: clamp(2rem,3.6vw,3.1rem); }
+.platform-section .section-lead { font-size: 1.05rem; }
+.platform-scope { color: var(--dim); font-size: .88rem; }
+.platform-preview { margin: 0; }
+.platform-preview img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; }
+.platform-preview figcaption { margin-top: .85rem; color: var(--dim); font: .7rem/1.5 var(--font-mono); }
+.case-digital-hero .case-hero-inner { grid-template-columns: minmax(0,1fr) minmax(0,1.05fr); gap: clamp(2rem,5vw,4rem); }
+.case-digital-hero .case-photo-hero { grid-column: auto; margin: 0; border-radius: 9px; }
+.case-digital-hero .case-photo-hero img { border-radius: 8px; }
+.case-digital-hero .case-title { font-size: clamp(3.5rem,6.5vw,6.5rem); }
+.case-digital-hero .case-scope { margin-bottom: 1.7rem; }
+@media (max-width: 860px) { .case-digital-hero .case-hero-inner { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .platform-grid { grid-template-columns: 1fr; } }
