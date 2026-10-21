@@ -8,7 +8,7 @@
       <video:title>FICA — Festival de Inverno de Alvaiázere</video:title>
       <video:description>Luz, pessoas e movimento, contados de dentro. Cobertura no dia e filme para ficar.</video:description>
       <video:player_loc allow_embed="yes">https://www.instagram.com/reel/DSvjQH2ACmN/embed/</video:player_loc>
-      <video:publication_date>2025-12-26</video:publication_date>
+      <video:publication_date>2025-12-26T00:00:00+00:00</video:publication_date>
     </video:video>
   </url>
   <url>
@@ -18,7 +18,7 @@
       <video:title>Bodo das Castanhas — Vermoil</video:title>
       <video:description>Três dias de música, energia e uma tradição que Vermoil mantém viva ano após ano.</video:description>
       <video:player_loc allow_embed="yes">https://www.instagram.com/reel/DQUwXoRAO8K/embed/</video:player_loc>
-      <video:publication_date>2025-10-27</video:publication_date>
+      <video:publication_date>2025-10-27T00:00:00+00:00</video:publication_date>
     </video:video>
   </url>
   <url>
@@ -28,7 +28,7 @@
       <video:title>Fórum Romano — Dia 1</video:title>
       <video:description>Personagens, mercado, artesanato e espetáculo de fogo no primeiro filme do Fórum Romano.</video:description>
       <video:content_loc>https://pixelmotion.pt/assets/works/forum-romano/forum-romano-dia-1.mp4</video:content_loc>
-      <video:publication_date>2025-09-19</video:publication_date>
+      <video:publication_date>2025-09-19T00:00:00+01:00</video:publication_date>
       <video:duration>59</video:duration>
     </video:video>
     <video:video>
@@ -36,7 +36,7 @@
       <video:title>Fórum Romano — Dia 2</video:title>
       <video:description>Ofícios, jogos, participação da comunidade e recriação histórica no segundo filme do Fórum Romano.</video:description>
       <video:content_loc>https://pixelmotion.pt/assets/works/forum-romano/forum-romano-dia-2.mp4</video:content_loc>
-      <video:publication_date>2025-09-19</video:publication_date>
+      <video:publication_date>2025-09-19T00:00:00+01:00</video:publication_date>
       <video:duration>60</video:duration>
     </video:video>
   </url>
