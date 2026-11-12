@@ -191,6 +191,18 @@
     }, { once: true });
   });
 
+  /* Pré-visualização silenciosa nos cartões: só corre à vista e sem pedido de movimento reduzido. */
+  const previews = [...document.querySelectorAll('video.thumb-video')];
+  if (previews.length && typeof IntersectionObserver === 'function'
+    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !(typeof navigator !== 'undefined' && navigator.connection?.saveData)) {
+    const previewObserver = new IntersectionObserver((entries) => entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) { target.pause(); return; }
+      if (!target.getAttribute('src')) target.src = target.dataset.src;
+      target.play().then(() => target.classList.add('is-playing')).catch(() => {});
+    }), { threshold: 0.35 });
+    previews.forEach((preview) => previewObserver.observe(preview));
+  }
+
   const lightbox = document.querySelector('#lightbox');
   if (lightbox) {
     const frameBox = lightbox.querySelector('.lb-frame');

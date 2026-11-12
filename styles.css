@@ -730,7 +730,7 @@ main:focus { outline: none; }
 .home-hero-inner { width: 100%; max-width: 1440px; margin: 0 auto; }
 .home-hero .eyebrow { color: #DDD9D4; font-size: .66rem; line-height: 1.7; letter-spacing: .14em; margin-bottom: 1.5rem; }
 .home-hero h1 { font-size: clamp(5rem,10.6vw,10.5rem); line-height: .89; letter-spacing: -.065em; max-width: 9ch; margin: 0 0 1.65rem; }
-.home-hero h1 span { color: #FFB489; }
+.home-hero h1 em { color: #FFB489; font-style: normal; }
 .home-hero-lead { color: #E0DDDA; max-width: 33em; font-size: clamp(.95rem,1.4vw,1.1rem); line-height: 1.6; margin-bottom: 1.5rem; }
 .home-hero .hero-ctas { gap: .7rem; }
 .home-hero .btn { padding: .85em 1.35em; }
@@ -838,4 +838,72 @@ main:focus { outline: none; }
   .hero-project > span:last-child { display: none; }
   .hero-controls { gap: .3rem; flex-direction: column; align-items: end; }
   .hero-motion-toggle, .hero-scroll { font-size: .57rem; min-height: 44px; padding: .3rem 0; }
+}
+
+/* ---------- abertura em movimento: reel de vários projetos, prova e faixa tipográfica ---------- */
+/* O reel está enquadrado ao centro, num corte horizontal e noutro vertical. */
+.hero-film picture { display: contents; }
+.hero-film img, .hero-film video { object-position: center; }
+/* O título entra linha a linha; sem animação, fica simplesmente no lugar. */
+.hero-line { display: block; width: max-content; max-width: 100%; overflow: hidden; padding: .1em .08em .14em 0; margin: -.1em -.08em -.14em 0; }
+.hero-line > span { display: block; animation: hero-rise .95s cubic-bezier(.16,1,.3,1) both; }
+.hero-line:nth-child(2) > span { animation-delay: .09s; }
+.hero-line:nth-child(3) > span { animation-delay: .18s; }
+@keyframes hero-rise { from { transform: translateY(115%); } }
+/* A legenda "Em cena" troca de nome com o projeto que está a passar. */
+.hero-project { flex: none; }
+[data-hero-project-name] { display: inline-block; transition: opacity .16s ease, transform .16s ease; }
+.hero-project.is-swapping [data-hero-project-name] { opacity: 0; transform: translateY(.4em); }
+/* Clientes à vista no primeiro ecrã. */
+.hero-proof { display: flex; align-items: center; justify-content: center; gap: 1rem; flex: 1 1 0; min-width: 0; padding-bottom: .8rem; font: .62rem/1.5 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: #F2F1EE; }
+.hero-proof-label { flex: none; color: #CBC6C1; }
+.hero-proof-track { display: flex; overflow: hidden; min-width: 0; max-width: 36rem; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.hero-proof-track ul { display: flex; flex: none; gap: 2.2rem; margin: 0; padding: 0 1.1rem; list-style: none; white-space: nowrap; animation: hero-marquee 32s linear infinite; }
+@keyframes hero-marquee { to { transform: translateX(-100%); } }
+/* Faixa tipográfica entre a abertura e os trabalhos. */
+.type-band { overflow: hidden; background: #0B0B0E; color: #F2F1EE; padding: clamp(1rem,2.4vw,1.8rem) 0; border-top: 1px solid rgba(255,255,255,.1); }
+.type-band-track { display: flex; align-items: center; gap: .5em; width: max-content; white-space: nowrap; font-family: var(--font-title); font-weight: 900; font-size: clamp(2.6rem,8vw,6.4rem); line-height: 1; letter-spacing: -.03em; text-transform: uppercase; animation: type-band 36s linear infinite; }
+.type-band-track > * { display: inline-flex; align-items: center; gap: .5em; }
+.type-band-track > *::after { content: ""; width: .22em; height: .22em; border-radius: 50%; background: var(--grad); }
+.type-band-track b { font-weight: 900; color: transparent; -webkit-text-stroke: 1.5px rgba(242,241,238,.55); }
+@keyframes type-band { to { transform: translateX(-50%); } }
+/* O botão de pausa do vídeo também pára as faixas em movimento. */
+.is-motion-paused .hero-proof-track ul, .is-motion-paused .type-band-track { animation-play-state: paused; }
+/* A mesma abertura nas páginas de solução, com títulos mais compridos. */
+.home-hero-page h1 { max-width: none; font-size: clamp(2.6rem,6.6vw,5.9rem); line-height: .95; letter-spacing: -.045em; }
+/* Pré-visualização em vídeo dentro de um cartão de trabalho. */
+.work-image { position: relative; }
+.thumb-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s ease; }
+.thumb-video.is-playing { opacity: 1; }
+/* Empresas: título a entrar, prova com imagem e quatro soluções. */
+.title-rise .line { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
+.title-rise .line > span { display: block; animation: hero-rise .95s cubic-bezier(.16,1,.3,1) both; }
+.title-rise .line:nth-child(2) > span { animation-delay: .12s; }
+.proof-works { padding-block: clamp(3rem,8vh,5rem) clamp(1rem,3vh,2rem); }
+.proof-works .works { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem 1.3rem; }
+.proof-works .work .meta h3 { font-size: 1.25rem; }
+.proof-works .work .meta p { font-size: .9rem; }
+@media (min-width: 861px) {
+  .solution-grid.has-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1120px) {
+  .solution-grid.has-4 { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .solution-grid.has-4 .solution-card { padding: 1.8rem 1.35rem; }
+  .solution-grid.has-4 .solution-card h3 { font-size: 1.38rem; }
+  .solution-grid.has-4 .solution-problem { min-height: 4.7em; }
+}
+@media (max-width: 1000px) {
+  .proof-works .works { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .home-hero { padding-bottom: 11.5rem; }
+  .home-hero-page h1 { font-size: clamp(2.2rem,9.6vw,3.6rem); }
+  .hero-bottom { flex-wrap: wrap; }
+  .hero-proof { order: -1; flex: 0 0 100%; justify-content: flex-start; padding-bottom: .1rem; }
+  .hero-proof-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .hero-proof-track { max-width: none; }
+  .hero-proof-track ul { padding-left: 0; padding-right: 2.2rem; }
+}
+@media (max-width: 520px) {
+  .proof-works .works { grid-template-columns: 1fr; }
 }

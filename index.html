@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261007-1">
+  <link rel="stylesheet" href="styles.css?v=20261112-1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -88,12 +88,15 @@
 
 <section id="hero" class="home-hero" aria-labelledby="hero-title">
   <div class="hero-film" aria-hidden="true">
-    <img src="assets/hero/forum-romano-poster.webp" width="1280" height="720" alt="" fetchpriority="high" decoding="async">
-    <video data-hero-video data-src="assets/hero/forum-romano-loop.mp4" muted loop playsinline preload="none" tabindex="-1"></video>
+    <picture>
+      <source media="(max-aspect-ratio: 4/5)" srcset="assets/hero/reel-tall.webp" width="1080" height="1920">
+      <img src="assets/hero/reel-wide.webp" width="1920" height="1080" alt="" fetchpriority="high" decoding="async">
+    </picture>
+    <video data-hero-video data-src="assets/hero/reel-wide.mp4" data-src-tall="assets/hero/reel-tall.mp4" muted loop playsinline preload="none" tabindex="-1"></video>
   </div>
   <div class="home-hero-inner">
     <p class="eyebrow">Vídeo &amp; experiências digitais · Centro de Portugal</p>
-    <h1 id="hero-title">Imagens<br>que <span>ficam.</span></h1>
+    <h1 id="hero-title"><span class="hero-line"><span>Imagens</span></span> <span class="hero-line"><span>que <em>ficam.</em></span></span></h1>
     <p class="home-hero-lead">Vídeo, fotografia, sites e plataformas. Damos forma à sua marca, do primeiro filme à experiência digital.</p>
     <div class="hero-ctas">
       <a href="#trabalhos" class="btn btn-primary">Ver os nossos trabalhos <span aria-hidden="true">↘</span></a>
@@ -101,13 +104,21 @@
     </div>
   </div>
   <div class="hero-bottom">
-    <a class="hero-project" href="projetos/forum-romano-ansiao.html"><span class="hero-project-mark" aria-hidden="true"></span><span><small>Em cena · Trabalho Pixel Motion</small>Fórum Romano / Ansião</span><span aria-hidden="true">↗</span></a>
+    <a class="hero-project" href="projetos/forum-romano-ansiao.html" data-hero-project data-cues='[[0.0,"Fórum Romano / Ansião","projetos/forum-romano-ansiao.html"],[6.01,"FICA / Alvaiázere","projetos/fica-alvaiazere.html"],[13.01,"Bodo das Castanhas / Vermoil","projetos/bodo-castanhas-vermoil.html"],[19.52,"Sushi Yuzu","#trabalhos"]]' data-cues-tall='[[0.0,"Fórum Romano / Ansião","projetos/forum-romano-ansiao.html"],[5.84,"FICA / Alvaiázere","projetos/fica-alvaiazere.html"],[8.47,"Bodo das Castanhas / Vermoil","projetos/bodo-castanhas-vermoil.html"],[16.47,"Sushi Yuzu","#trabalhos"]]'><span class="hero-project-mark" aria-hidden="true"></span><span><small>Em cena · Trabalho Pixel Motion</small><span data-hero-project-name>Fórum Romano / Ansião</span></span><span aria-hidden="true">↗</span></a>
+    <div class="hero-proof">
+      <span class="hero-proof-label">Confiam em nós</span>
+      <div class="hero-proof-track"><ul><li>CM Alvaiázere</li><li>CM Ansião</li><li>VITO Construções</li><li>Freguesia de Vermoil</li><li>Grupo Wave</li><li>Doce Felicidade</li><li>SoniGym</li></ul><ul aria-hidden="true"><li>CM Alvaiázere</li><li>CM Ansião</li><li>VITO Construções</li><li>Freguesia de Vermoil</li><li>Grupo Wave</li><li>Doce Felicidade</li><li>SoniGym</li></ul></div>
+    </div>
     <div class="hero-controls">
       <button type="button" class="hero-motion-toggle" data-hero-toggle aria-label="Reproduzir vídeo de fundo" hidden><span data-hero-icon aria-hidden="true">▶</span><span data-hero-label>Reproduzir vídeo</span></button>
       <a class="hero-scroll" href="#trabalhos">Explorar <span aria-hidden="true">↓</span></a>
     </div>
   </div>
 </section>
+
+<div class="type-band" aria-hidden="true">
+  <div class="type-band-track"><span>Vídeo</span><b>Fotografia</b><span>Sites</span><b>Plataformas</b><span>Vídeo</span><b>Fotografia</b><span>Sites</span><b>Plataformas</b></div>
+</div>
 
 <section id="trabalhos" class="section portfolio-section">
   <div class="portfolio-intro">
@@ -147,7 +158,7 @@
   </div>
   <div class="project-references">
     <p class="eyebrow">Outras referências de trabalho</p>
-    <ul><li>CM Alvaiázere</li><li>CM Ansião</li><li>Sabores de Ansião</li><li>Campanha Autárquicas 2025 — Alvaiázere</li></ul>
+    <ul><li>CM Alvaiázere</li><li>CM Ansião</li><li>Sabores de Ansião</li><li>Campanha Autárquicas 2025 — Alvaiázere</li><li>Sushi Yuzu</li></ul>
   </div>
 </section>
 
@@ -370,7 +381,7 @@
 
 
 <script src="analytics-consent.js?v=20261007-1"></script>
-<script src="scroll-cinematic.js?v=20261007-1"></script>
-<script src="hero-motion.js?v=20261007-1"></script>
+<script src="scroll-cinematic.js?v=20261112-1"></script>
+<script src="hero-motion.js?v=20261112-1"></script>
 </body>
 </html>

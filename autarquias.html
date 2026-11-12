@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261007-1">
+  <link rel="stylesheet" href="styles.css?v=20261112-1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -63,7 +63,7 @@
   </script>
   <noscript><link rel="stylesheet" href="no-script.css?v=20261007-1"></noscript>
 </head>
-<body>
+<body class="has-dark-hero">
 <a class="skip-link" href="#main-content">Saltar para o conteúdo</a>
 
 <header class="site-header">
@@ -80,40 +80,39 @@
 <main id="main-content" tabindex="-1">
 
 <!-- ============ HERO ============ -->
-<section class="section page-hero gel-a">
-  <p class="eyebrow">Para Municípios, Freguesias e Associações</p>
-  <h1 class="section-title">Comunicação de proximidade para o seu <span class="grad-text">concelho</span></h1>
-  <p class="section-lead">Filmamos o território, as iniciativas e as pessoas do seu concelho. Da cobertura de um evento a um plano de comunicação contínua, definimos consigo os formatos, o calendário e a proposta.</p>
-  <div class="hero-ctas">
-    <a href="#proposta" class="btn btn-primary">Peça uma proposta enquadrada</a>
-    <a href="#programas" class="btn btn-ghost">Ver programas</a>
+<section id="hero" class="home-hero home-hero-page" aria-labelledby="hero-title">
+  <div class="hero-film" aria-hidden="true">
+    <picture>
+      <source media="(max-aspect-ratio: 4/5)" srcset="assets/hero/autarquias-tall.webp" width="1080" height="1920">
+      <img src="assets/hero/autarquias-wide.webp" width="1920" height="1080" alt="" fetchpriority="high" decoding="async">
+    </picture>
+    <video data-hero-video data-src="assets/hero/autarquias-wide.mp4" data-src-tall="assets/hero/autarquias-tall.mp4" muted loop playsinline preload="none" tabindex="-1"></video>
+  </div>
+  <div class="home-hero-inner">
+    <p class="eyebrow">Para Municípios, Freguesias e Associações</p>
+    <h1 id="hero-title"><span class="hero-line"><span>Comunicação de</span></span> <span class="hero-line"><span>proximidade para</span></span> <span class="hero-line"><span>o seu <em>concelho</em></span></span></h1>
+    <p class="home-hero-lead">Filmamos o território, as iniciativas e as pessoas do seu concelho. Da cobertura de um evento a um plano de comunicação contínua, definimos consigo os formatos, o calendário e a proposta.</p>
+    <div class="hero-ctas">
+      <a href="#proposta" class="btn btn-primary">Peça uma proposta enquadrada</a>
+      <a href="#programas" class="btn btn-ghost">Ver programas</a>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <a class="hero-project" href="projetos/forum-romano-ansiao.html" data-hero-project data-cues='[[0.0,"Fórum Romano / Ansião","projetos/forum-romano-ansiao.html"],[6.59,"FICA / Alvaiázere","projetos/fica-alvaiazere.html"],[13.6,"Bodo das Castanhas / Vermoil","projetos/bodo-castanhas-vermoil.html"]]' data-cues-tall='[[0.0,"Fórum Romano / Ansião","projetos/forum-romano-ansiao.html"],[6.59,"FICA / Alvaiázere","projetos/fica-alvaiazere.html"],[9.22,"Bodo das Castanhas / Vermoil","projetos/bodo-castanhas-vermoil.html"]]'><span class="hero-project-mark" aria-hidden="true"></span><span><small>Em cena · Trabalho Pixel Motion</small><span data-hero-project-name>Fórum Romano / Ansião</span></span><span aria-hidden="true">↗</span></a>
+    <div class="hero-proof">
+      <span class="hero-proof-label">Já trabalhámos com</span>
+      <div class="hero-proof-track"><ul><li>CM Alvaiázere</li><li>CM Ansião</li><li>Freguesia de Vermoil</li><li>FICA Alvaiázere</li><li>Sabores de Ansião</li></ul><ul aria-hidden="true"><li>CM Alvaiázere</li><li>CM Ansião</li><li>Freguesia de Vermoil</li><li>FICA Alvaiázere</li><li>Sabores de Ansião</li></ul></div>
+    </div>
+    <div class="hero-controls">
+      <button type="button" class="hero-motion-toggle" data-hero-toggle aria-label="Reproduzir vídeo de fundo" hidden><span data-hero-icon aria-hidden="true">▶</span><span data-hero-label>Reproduzir vídeo</span></button>
+      <a class="hero-scroll" href="#prova">Explorar <span aria-hidden="true">↓</span></a>
+    </div>
   </div>
 </section>
 
-<!-- ============ DORES ============ -->
-<section class="section">
-  <div data-reveal>
-    <p class="eyebrow">O problema</p>
-    <h2 class="section-title">O concelho faz. Mas <span class="grad-text">quem vê</span>?</h2>
-  </div>
-  <div class="cards">
-    <article class="card" data-reveal>
-      <span class="num">01</span>
-      <h3>Obra feita, história por contar</h3>
-      <p>Investimentos, eventos e serviços precisam de informação clara e acessível. O vídeo ajuda a mostrar o que foi feito, onde e para quem.</p>
-    </article>
-    <article class="card" data-reveal>
-      <span class="num">02</span>
-      <h3>Eventos únicos, memória curta</h3>
-      <p>Uma cobertura planeada regista as pessoas, o ambiente e os momentos que distinguem o evento, com conteúdos para a divulgação e a memória da iniciativa.</p>
-    </article>
-    <article class="card" data-reveal>
-      <span class="num">03</span>
-      <h3>Comunicação aos solavancos</h3>
-      <p>Um calendário editorial ajuda a distribuir os temas, preparar as captações e manter a comunidade informada ao longo do ano.</p>
-    </article>
-  </div>
-</section>
+<div class="type-band" aria-hidden="true">
+  <div class="type-band-track"><span>Território</span><b>Iniciativas</b><span>Pessoas</span><b>Território</b><span>Iniciativas</span><b>Pessoas</b></div>
+</div>
 
 <!-- ============ PROVA ============ -->
 <section id="prova" class="section gel-b">
@@ -139,6 +138,31 @@
   <div class="project-references" aria-label="Outras referências de trabalho">
     <p>Outras referências de trabalho na região</p>
     <ul><li>CM Alvaiázere</li><li>CM Ansião</li><li>Sabores de Ansião</li></ul>
+  </div>
+</section>
+
+<!-- ============ DORES ============ -->
+<section class="section">
+  <div data-reveal>
+    <p class="eyebrow">O problema</p>
+    <h2 class="section-title">O concelho faz. Mas <span class="grad-text">quem vê</span>?</h2>
+  </div>
+  <div class="cards">
+    <article class="card" data-reveal>
+      <span class="num">01</span>
+      <h3>Obra feita, história por contar</h3>
+      <p>Investimentos, eventos e serviços precisam de informação clara e acessível. O vídeo ajuda a mostrar o que foi feito, onde e para quem.</p>
+    </article>
+    <article class="card" data-reveal>
+      <span class="num">02</span>
+      <h3>Eventos únicos, memória curta</h3>
+      <p>Uma cobertura planeada regista as pessoas, o ambiente e os momentos que distinguem o evento, com conteúdos para a divulgação e a memória da iniciativa.</p>
+    </article>
+    <article class="card" data-reveal>
+      <span class="num">03</span>
+      <h3>Comunicação aos solavancos</h3>
+      <p>Um calendário editorial ajuda a distribuir os temas, preparar as captações e manter a comunidade informada ao longo do ano.</p>
+    </article>
   </div>
 </section>
 
@@ -289,6 +313,7 @@
 
 
 <script src="analytics-consent.js?v=20261007-1"></script>
-<script src="scroll-cinematic.js?v=20261007-1"></script>
+<script src="scroll-cinematic.js?v=20261112-1"></script>
+<script src="hero-motion.js?v=20261112-1"></script>
 </body>
 </html>
