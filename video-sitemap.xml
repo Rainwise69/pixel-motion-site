@@ -40,4 +40,15 @@
       <video:duration>60</video:duration>
     </video:video>
   </url>
+  <url>
+    <loc>https://pixelmotion.pt/projetos/predio-iconico.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://pixelmotion.pt/assets/works/predio-iconico/capa-reel.webp</video:thumbnail_loc>
+      <video:title>Prédio Icónico</video:title>
+      <video:description>Filme vertical para um prédio histórico em Coimbra: a mesma sala transformada com IA em galeria, escola de dança, restaurante e discoteca.</video:description>
+      <video:content_loc>https://pixelmotion.pt/assets/works/predio-iconico/predio-iconico.mp4</video:content_loc>
+      <video:duration>62</video:duration>
+      <video:publication_date>2026-11-11T00:00:00+00:00</video:publication_date>
+    </video:video>
+  </url>
 </urlset>
