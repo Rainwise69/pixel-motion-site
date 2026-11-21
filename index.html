@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-PT"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="pt-PT"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="format-detection" content="telephone=no">
 <meta name="google-site-verification" content="Vj-dPQL_HexFXsoC8J1kEzAHAPzy7qYkgxM0lhC6j0Q">
 <title>Funcionário digital com IA para pequenos negócios | Pixel Motion</title>
 <meta name="description" content="Um funcionário digital com inteligência artificial responde aos seus clientes no WhatsApp e trata das marcações, encomendas e reservas. Vídeo, fotografia e sites em Coimbra.">
@@ -26,9 +26,9 @@
 <link rel="preload" as="fetch" crossorigin href="assets/personagem/corpo-m.glb" media="(max-width:759px)">
 <link rel="preload" as="fetch" crossorigin href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/gltf/draco_wasm_wrapper.js">
 <link rel="preload" as="fetch" crossorigin href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/gltf/draco_decoder.wasm">
-<script>(function(){var h=document.documentElement,S=function(b){h.style.setProperty('--botc',(b.offsetHeight+18)+'px')};try{if(!localStorage.getItem('pm_analytics_consent'))h.classList.add('cns')}catch(e){h.classList.add('cns')}
-document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.pm-consent-accept,.pm-consent-reject'))h.classList.remove('cns')},true);
-document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){var b=document.querySelector('.pm-consent');if(!b){h.classList.remove('cns');return}S(b);if(window.ResizeObserver)new ResizeObserver(function(){if(b.isConnected)S(b)}).observe(b)},0)})})();</script>
+<script>(function(){var h=document.documentElement,S=function(b){h.style.setProperty('--botc',(b.offsetHeight+18)+'px');var s=document.getElementById('stage'),k=document.getElementById('pick');if(s&&k)h.classList.toggle('cnb',innerWidth<760&&innerHeight-b.offsetHeight-18-k.offsetHeight-8-s.offsetTop<258)};try{if(!localStorage.getItem('pm_analytics_consent'))h.classList.add('cns')}catch(e){h.classList.add('cns')}
+document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.pm-consent-accept,.pm-consent-reject'))h.classList.remove('cns','cnb')},true);
+document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){var b=document.querySelector('.pm-consent');if(!b){h.classList.remove('cns');return}var f=function(){if(b.isConnected)S(b)};S(b);if(window.ResizeObserver)new ResizeObserver(f).observe(b);addEventListener('resize',f)},0)})})();</script>
 <link rel="icon" type="image/png" sizes="180x180" href="/assets/brand/logo/png/favicon-180.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/brand/logo/png/favicon-180.png">
 <script type="application/ld+json">
@@ -146,7 +146,11 @@ section.s{padding:110px 40px}.w{max-width:1120px;margin:0 auto}
 .end{text-align:center;background:linear-gradient(135deg,#FFD2B0,#CDBEFF 55%,#B6E6FF)}.end h2{margin:16px auto 0}.end .sub{margin:18px auto 0}
 .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
 .btn{font:700 17px/1 'Schibsted Grotesk';padding:18px 26px;border-radius:999px;border:1.5px solid #14102B;color:#14102B;text-decoration:none;background:rgba(255,255,255,.6)}.btn.p{background:#14102B;color:#fff}
-.who{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;max-width:640px;margin:44px auto 0;text-align:left}.who div{background:rgba(255,255,255,.7);border-radius:20px;padding:18px 20px}.who small{display:block;font:700 11px/1.3 'JetBrains Mono';letter-spacing:.12em;color:#3D3760}.who b{font:900 24px/1.3 Archivo}
+/* fim da página: WhatsApp (só mensagens) a verde e chamada (voz) a escuro, cada um com a sua explicação */
+.ctb{display:inline-flex;align-items:center;gap:14px;text-align:left;flex:0 1 330px;padding:15px 24px 15px 20px;border-radius:24px;border:1.5px solid #14102B;color:#14102B;text-decoration:none;transition:transform .15s}.ctb:hover{transform:translateY(-2px)}.ctb svg{width:30px;height:30px;flex:none}
+.ctb b{display:block;font:800 19px/1.15 'Schibsted Grotesk'}.ctb small{display:block;font:500 13.5px/1.3 'Schibsted Grotesk';margin-top:4px;opacity:.85}
+.ctb.wab{background:#25D366;color:#06281a;box-shadow:0 18px 34px -18px rgba(11,120,60,.85)}.ctb.telb{background:#14102B;color:#fff}
+
 footer{background:#14102B;color:#a9a3c6;font-size:14px;padding:26px 40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 @media(max-width:759px){section.s{padding:72px 20px}.top nav a:not(.cta),.more{display:none}footer{padding:22px 20px}}
 .st{text-align:center;font:700 calc(1.3*var(--v))/1 'JetBrains Mono';letter-spacing:.1em;color:#8a8298;padding:calc(1.3*var(--v)) 0;border-radius:99px;background:#F4EEE6;transition:background .3s,color .3s}.st.on{background:#D8F7E6;color:#0E6B3C}
@@ -159,41 +163,55 @@ body.wide .top nav a:not(.cta){display:none}
 @media(min-width:900px){.works{grid-template-columns:repeat(3,1fr)}}
 .stage{display:none}
 @keyframes nudm{35%{transform:translateY(-7px)}70%{transform:translateY(2px)}}
-.wa,.pst{display:none}
+.wa,.pst,.trym,.trym .sh,.try{display:none}
+/* botões «Experimentar»: abrem o WhatsApp do assistente com uma mensagem pronta. No computador fica dentro da caixa dos negócios; no telemóvel há um na janela da conversa e outro por baixo do texto */
+.try,.tryp{align-items:center;justify-content:center;gap:10px;border-radius:999px;background:#25D366;color:#06281a;border:1.5px solid #14102B;font:800 17px/1 'Schibsted Grotesk';text-decoration:none;box-shadow:0 16px 30px -16px rgba(11,120,60,.8);transition:transform .15s,background .15s;-webkit-tap-highlight-color:transparent}
+.tryp{display:inline-flex;gap:7px;padding:12px 16px 12px 13px;border-color:#25D366;box-shadow:none;font:700 15px/1 'Schibsted Grotesk'}
+/* só aparece quando cabe na mesma linha do último negócio; senão a caixa crescia e o título encolhia */
+.pick .chips{container-type:inline-size}@container (max-width:247px){.tryp{display:none}}
+.try:hover,.tryp:hover{background:#1ec95c;transform:translateY(-1px)}.try svg,.tryp svg,.trym svg{width:1.2em;height:1.2em;flex:none}
 @media(max-width:759px){
  /* primeiro ecrã à medida: título, boneco o maior possível, janela da conversa e barra dos negócios */
- .hero{height:auto;min-height:100vh;display:flex;flex-direction:column;--vh:100vh;--bot:94px;--fs:min(calc((100vw - 40px)/9.47),46px);--ebf:min(calc((100vw - 40px)/33.3),12px);--top:calc(76px + var(--ebf) + 1.92*var(--fs));--chat:clamp(132px,calc(var(--vh) - var(--top) - 82vw - var(--bot)),196px);--stg:clamp(160px,calc(var(--vh) - var(--top) - var(--chat) - var(--bot)),82vw)}
+ .hero{height:auto;min-height:100vh;display:flex;flex-direction:column;--vh:100vh;--w:100vw;--bot:94px;--fs:min(calc((var(--w) - 40px)/9.47),46px);--ebf:min(calc((var(--w) - 40px)/33.3),12px);--top:calc(76px + var(--ebf) + 1.92*var(--fs));--chat:clamp(132px,calc(var(--vh) - var(--top) - var(--w)*.82 - var(--bot)),196px);--stg:clamp(160px,calc(var(--vh) - var(--top) - var(--chat) - var(--bot)),calc(var(--w)*.82))}
  @supports(height:100svh){.hero{--vh:100svh}}
  /* primeira visita: a barra dos negócios sobe para cima do aviso de cookies e a página guarda lugar aos dois */
- html.cns .hero{--pk:84px;--bot:calc(var(--botc,157px) + var(--pk));--av:calc(var(--vh) - var(--top) - var(--bot));--chat:clamp(clamp(104px,calc(var(--av) - 160px),132px),calc(var(--av) - 82vw),196px)}
+ html.cns .hero{--pk:84px;--bot:calc(var(--botc,157px) + var(--pk));--av:calc(var(--vh) - var(--top) - var(--bot));--chat:clamp(clamp(104px,calc(var(--av) - 160px),132px),calc(var(--av) - var(--w)*.82),196px)}
  html.cns .pick{bottom:var(--botc,157px)!important}
  html.cns .hero:after{height:calc(var(--bot) - 2px);background:linear-gradient(rgba(239,230,216,0),#EFE6D8 14px)}
  @media(max-height:799px){html.cns .hero{--pk:68px}html.cns .pick b{display:none}html.cns .pick .chips{margin-top:0}}
  @media(max-height:719px){html.cns .hero{--pk:57px}html.cns .pick .chip{padding:12px 0}html.cns .pick .chip:before{display:none}}
  /* ecrãs muito baixos: não cabe tudo com o aviso aberto, a conversa fica logo abaixo até a pessoa responder ao aviso */
- @media(max-height:619px){html.cns .hero{--chat:132px;--stg:clamp(150px,calc(var(--av) + 8px),82vw)}html.cns .phone{margin-top:22px}}
- .hero:after{content:"";position:fixed;left:0;right:0;bottom:0;height:calc(var(--bot) + 30px);background:linear-gradient(rgba(239,230,216,0),rgba(239,230,216,.97) 46%);z-index:50;pointer-events:none;transition:opacity .35s}.hero.past:after{opacity:0}
+ @media(max-height:619px){html.cns .hero{--chat:132px;--stg:clamp(150px,calc(var(--av) + 8px),calc(var(--w)*.82))}html.cns .phone{margin-top:22px}}
+ /* o mesmo quando é o aviso que fica alto (letra maior): a página mede e marca com «cnb» */
+ html.cnb .hero{--chat:132px;--stg:clamp(150px,calc(var(--av) + 8px),calc(var(--w)*.82))}html.cnb .phone{margin-top:22px}
+ .hero:after{content:"";position:fixed;left:0;right:0;bottom:0;height:calc(var(--bot) + 30px);background:linear-gradient(rgba(239,230,216,0),#EFE6D8 46%);z-index:50;pointer-events:none;transition:opacity .35s}.hero.past:after{opacity:0}
  canvas#c{-webkit-tap-highlight-color:transparent}
- .top{padding:18px 20px}.logo{white-space:nowrap;font-size:min(17px,4.1vw)}.top nav a.cta{white-space:nowrap;padding:9px 13px;font-size:13.5px}
+ /* letra maior no telemóvel (o «aA» do Safari do iPhone): os textos que têm de caber à largura ficam do tamanho desenhado; --tz desfaz o aumento, --w é a largura real */
+ .top,.left .eb,.left h1,.pick,.wa,.trym{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+ .top{padding:18px 20px}.logo{white-space:nowrap;font-size:calc(min(17px,(var(--w) - 248px)/8.17)*var(--tz,1))}.top nav a.cta{white-space:nowrap;padding:9px 13px;font-size:calc(13.5px*var(--tz,1))}
  .left{display:contents}.left>*{position:relative;z-index:3}
- .left .eb{order:1;margin:68px 20px 0;font-size:var(--ebf);letter-spacing:.12em;white-space:nowrap}
- .left h1{order:1;margin:8px 20px 0;font-size:var(--fs);white-space:nowrap}.left h1 em{display:block}
- .left .lead{order:5;margin:16px 20px 44px;font-size:16px}.eb{font-size:11px}
+ .left .eb{order:1;margin:68px 20px 0;font-size:calc(var(--ebf)*var(--tz,1)*var(--ek,1));letter-spacing:.12em;white-space:nowrap}
+ .left h1{order:1;margin:8px 20px 0;font-size:calc(var(--fs)*var(--tz,1)*var(--fk,1));white-space:nowrap}.left h1 em{display:block;width:max-content}
+ .left .lead{order:5;margin:16px 20px 18px;font-size:16px}.left .try{display:flex;order:6;margin:0 20px 44px;padding:17px 20px}.pick .tryp{display:none}.eb{font-size:11px}
  .stage{display:block;position:relative;height:var(--stg);order:2;flex:none;pointer-events:none;transition:height .35s}
  .pst{display:block;position:absolute;left:50%;top:-10%;height:120%;width:auto;max-width:none;transform:translateX(-50%);transition:opacity .3s;user-select:none;-webkit-user-select:none}.stage.rdy .pst{opacity:0}
  .pick{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom))!important;width:auto;margin:0;padding:8px 8px 7px;border-radius:22px;z-index:60;transition:transform .35s,opacity .35s,bottom .35s}.pick.off{transform:translateY(160%);opacity:0;pointer-events:none}.pick.nudge{animation:nudm .6s ease}
- .pick b{font:700 10px/1 'JetBrains Mono';letter-spacing:.14em;text-transform:uppercase;color:#FF7A2F;text-align:center}.pick span{display:none}
+ .pick b{font:700 10px/1 'JetBrains Mono';font-size:calc(10px*var(--tz,1));letter-spacing:.14em;text-transform:uppercase;color:#FF7A2F;text-align:center}.pick span{display:none}
  .pick .chips{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:6px}
- .pick .chip{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;border:0;border-radius:14px;background:rgba(255,255,255,.08);color:#fff;font:600 min(10.5px,2.75vw)/1 'Schibsted Grotesk';letter-spacing:-.01em;min-width:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
- .pick .chip:before{font-size:19px;line-height:1}.pick .chip:nth-child(1):before{content:'🧁'}.pick .chip:nth-child(2):before{content:'✂️'}.pick .chip:nth-child(3):before{content:'🍽️'}.pick .chip:nth-child(4):before{content:'🔧'}.pick .chip:nth-child(5):before{content:'🩺'}
+ .pick .chip{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;border:0;border-radius:14px;background:rgba(255,255,255,.08);color:#fff;font:600 min(10.5px,2.75vw)/1 'Schibsted Grotesk';font-size:calc(min(10.5px,2.75vw)*var(--tz,1));letter-spacing:-.01em;min-width:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+ .pick .chip:before{font-size:calc(19px*var(--tz,1));line-height:1}.pick .chip:nth-child(1):before{content:'🧁'}.pick .chip:nth-child(2):before{content:'✂️'}.pick .chip:nth-child(3):before{content:'🍽️'}.pick .chip:nth-child(4):before{content:'🔧'}.pick .chip:nth-child(5):before{content:'🩺'}
  .pick .chip.on{background:#FF7A2F;color:#14102B}
  /* a conversa é uma janela: as mensagens novas entram por baixo e as antigas sobem e saem */
  .phone{display:block;position:relative;right:auto!important;bottom:auto;width:auto;height:auto;margin:0 20px;transform:none;animation:none;padding:0;border-radius:22px;background:none;box-shadow:0 20px 40px -24px rgba(40,20,90,.5);order:4;--v:8px}
  .phone:before,.ph-top,.phone .ph-bar{display:none}.scr{height:var(--chat);border-radius:22px;border:1.5px solid #14102B}
- #feed{justify-content:flex-end}.m{transition:opacity .25s}.m.out{opacity:0}
- .wa{display:flex;align-items:center;gap:6px;position:absolute;left:14px;top:-10px;z-index:2;font:700 9.5px/1 'JetBrains Mono';letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#14102B;padding:6px 10px 6px 8px;border-radius:99px}
+ #feed{justify-content:flex-end;padding-top:18px}.m{transition:opacity .25s}.m.out{opacity:0}
+ .wa{display:flex;align-items:center;gap:6px;position:absolute;left:14px;top:-10px;z-index:2;font:700 9.5px/1 'JetBrains Mono';font-size:calc(9.5px*var(--tz,1));letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#14102B;padding:6px 10px 6px 8px;border-radius:99px}
  .wa:before{content:"";width:7px;height:7px;border-radius:50%;background:#35E08A;box-shadow:0 0 0 3px rgba(53,224,138,.22)}
+ /* botão verde na janela da conversa: experimentar a sério no WhatsApp */
+ .trym{display:flex;align-items:center;gap:6px;position:absolute;right:12px;top:-15px;z-index:2;height:30px;padding:0 12px 0 10px;border-radius:99px;background:#25D366;color:#06281a;border:1.5px solid #14102B;font:800 12px/1 'Schibsted Grotesk';font-size:calc(12px*var(--tz,1));letter-spacing:-.01em;text-decoration:none;white-space:nowrap;box-shadow:0 10px 18px -10px rgba(11,120,60,.9);-webkit-tap-highlight-color:transparent}
+ .trym:after{content:"";position:absolute;inset:-9px -6px}
 }
+@media(max-width:389px){.trym .lg{display:none}.trym .sh{display:inline}}
 @media(max-width:345px){.logo span{display:none}}
 
 .skip-link{position:fixed;top:12px;left:16px;z-index:2000;padding:12px 18px;background:#fff;color:#14102B;border-radius:8px;transform:translateY(-160%)}.skip-link:focus{transform:none}
@@ -213,6 +231,10 @@ footer.pe .fim{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 26px;justify
 <a class="skip-link" href="#main-content">Saltar para o conteúdo</a>
 <main id="main-content" tabindex="-1">
 <section class="hero" id="hero">
+<script>/* letra maior no telemóvel: mede quanto a letra cresce (--tz) e a largura real (--w) */
+(function(){var H=document.currentScript.parentNode,p=document.createElement("i");p.setAttribute("aria-hidden","true");p.style.cssText="position:absolute;left:-999px;top:0;visibility:hidden;pointer-events:none;font:100px/1 monospace;white-space:nowrap;-webkit-text-size-adjust:100%;text-size-adjust:100%";p.textContent="X";H.appendChild(p);
+function m(){var z=p.getBoundingClientRect().height/100;H.style.setProperty("--tz",z>.3&&z<6?(1/z).toFixed(4):"1");H.style.setProperty("--w",H.clientWidth+"px");if(window.__fit)window.__fit()}
+m();if(window.ResizeObserver)new ResizeObserver(m).observe(p);addEventListener("resize",m)})()</script>
 <div class="bg"></div>
 <canvas id="c"></canvas>
 <div class="top"><div class="logo"><i style="width:5px;height:5px;background:#2E6BFF"></i><i style="width:8px;height:8px;background:#6E6BD8"></i><i style="width:13px;height:13px;background:#D9794F"></i><i style="width:24px;height:24px;background:linear-gradient(135deg,#FF7A2F,#F5232E 45%,#C02A8F)"></i><span>PIXEL MOTION</span></div><nav><a href="#como">Como funciona</a><a href="#precos">Preços</a><a href="#trabalhos">Trabalhos</a><a href="autarquias.html">Autarquias</a><a class="cta" href="#contacto">Falar connosco</a></nav></div>
@@ -221,12 +243,19 @@ footer.pe .fim{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 26px;justify
  <p class="eb">INTELIGÊNCIA ARTIFICIAL PARA PEQUENOS NEGÓCIOS</p>
  <h1>Olá. Sou o seu <em>funcionário digital.</em></h1>
  <p class="lead">Respondo sozinho aos seus clientes e trato das marcações, encomendas e reservas. Na hora, de dia e de noite.</p>
+ <a class="try" id="try" href="https://wa.me/351913667443?text=Ol%C3%A1%2C%20gostava%20de%20experimentar%20o%20assistente." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.48 3 2 6.94 2 11.8c0 1.76.59 3.4 1.6 4.78L2.5 21l4.72-1.26A10.9 10.9 0 0 0 12 20.6c5.52 0 10-3.94 10-8.8S17.52 3 12 3z"/></svg>Experimente agora no WhatsApp</a>
 </div>
 <div class="stage" id="stage"><picture><source media="(max-width:759px)" srcset="assets/personagem/poster.webp"><img class="pst" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" width="750" height="720" fetchpriority="high"></picture></div>
-<div class="pick" id="pick"><b>E no seu negócio?</b><span>CARREGUE E VEJA-O A TRABALHAR</span><div class="chips" id="chips"><button type="button" class="chip on">Pastelaria</button><button type="button" class="chip">Cabeleireiro</button><button type="button" class="chip">Restaurante</button><button type="button" class="chip">Oficina</button><button type="button" class="chip">Clínica</button></div></div>
-<div class="phone"><span class="wa" id="wa">WhatsApp · Pastelaria</span><div class="scr"><div class="ph-top"><i></i><div><b id="phn">Pastelaria</b><span>funcionário digital ligado</span></div></div><div id="feed"><p class="idle">As mensagens dos seus clientes chegam aqui.</p></div><div class="ph-bar"><div class="st" id="st">À espera de mensagens</div></div></div></div>
+<div class="pick" id="pick"><b>E no seu negócio?</b><span>CARREGUE E VEJA-O A TRABALHAR</span><div class="chips" id="chips"><button type="button" class="chip on">Pastelaria</button><button type="button" class="chip">Cabeleireiro</button><button type="button" class="chip">Restaurante</button><button type="button" class="chip">Oficina</button><button type="button" class="chip">Clínica</button><a class="tryp" href="https://wa.me/351913667443?text=Ol%C3%A1%2C%20gostava%20de%20experimentar%20o%20assistente." target="_blank" rel="noopener" title="Experimentar no WhatsApp" aria-label="Experimentar no WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.48 3 2 6.94 2 11.8c0 1.76.59 3.4 1.6 4.78L2.5 21l4.72-1.26A10.9 10.9 0 0 0 12 20.6c5.52 0 10-3.94 10-8.8S17.52 3 12 3z"/></svg>Experimentar</a></div></div>
+<div class="phone"><span class="wa" id="wa">Pastelaria</span><a class="trym" id="trym" href="https://wa.me/351913667443?text=Ol%C3%A1%2C%20gostava%20de%20experimentar%20o%20assistente." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.48 3 2 6.94 2 11.8c0 1.76.59 3.4 1.6 4.78L2.5 21l4.72-1.26A10.9 10.9 0 0 0 12 20.6c5.52 0 10-3.94 10-8.8S17.52 3 12 3z"/></svg><span class="lg">Experimente no WhatsApp</span><span class="sh">Experimentar</span></a><div class="scr"><div class="ph-top"><i></i><div><b id="phn">Pastelaria</b><span>funcionário digital ligado</span></div></div><div id="feed"><p class="idle">As mensagens dos seus clientes chegam aqui.</p></div><div class="ph-bar"><div class="st" id="st">À espera de mensagens</div></div></div></div>
 <a class="more" href="#como">↓ VER COMO FUNCIONA</a>
 </section>
+<script>/* rede de segurança: se o título ou a frase laranja ainda saírem da largura, encolhem até caber */
+(function(){var H=document.querySelector(".hero");function w(n){var r=document.createRange();r.selectNodeContents(n);return r.getBoundingClientRect().width}
+function fit(){H.style.removeProperty("--fk");H.style.removeProperty("--ek");if(innerWidth>=760)return;var h=H.querySelector(".left h1"),e=H.querySelector(".left .eb");if(!h||!e)return;
+var a=h.clientWidth,x=Math.max(w(h.firstChild),w(h.querySelector("em")));if(x>a+.5)H.style.setProperty("--fk",(a/x*.995).toFixed(4));
+a=e.clientWidth;x=w(e);if(x>a+.5)H.style.setProperty("--ek",(a/x*.995).toFixed(4))}
+window.__fit=fit;fit();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit)})()</script>
 
 <section class="s" id="como"><div class="w">
  <p class="eb">COMO FUNCIONA</p>
@@ -297,8 +326,7 @@ footer.pe .fim{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 26px;justify
  <p class="eb">SEM COMPROMISSO</p>
  <h2>Vamos ver onde a IA <em>o pode ajudar?</em></h2>
  <p class="sub">A primeira conversa é grátis. Diga-nos que negócio tem e mostramos-lhe o que mudava.</p>
- <div class="btns"><a class="btn p" href="https://wa.me/351913667443">Escrever no WhatsApp</a><a class="btn" href="tel:+351937555554">Ligar: 937 555 554</a></div>
- <div class="who"><div><small>MENSAGENS · RESPONDE O ASSISTENTE COM IA</small><b>913 667 443</b></div><div><small>CHAMADAS · FALA COM O ALEXANDRE</small><b>937 555 554</b></div></div>
+ <div class="btns"><a class="ctb wab" href="https://wa.me/351913667443?text=Ol%C3%A1%20Pixel%20Motion.%20Quero%20saber%20como%20a%20intelig%C3%AAncia%20artificial%20pode%20ajudar%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.48 3 2 6.94 2 11.8c0 1.76.59 3.4 1.6 4.78L2.5 21l4.72-1.26A10.9 10.9 0 0 0 12 20.6c5.52 0 10-3.94 10-8.8S17.52 3 12 3z"/></svg><span><b>Escrever no WhatsApp</b><small>Só mensagens · responde o assistente com IA</small></span></a><a class="ctb telb" href="tel:+351937555554"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02L6.6 10.8z"/></svg><span><b>Ligar: 937 555 554</b><small>Chamadas · fala com o Alexandre</small></span></a></div>
 </div></section>
 </main>
 <footer class="pe">
@@ -329,11 +357,11 @@ const showErr=m=>{console.error(m);if(!location.search.includes('debug'))return;
 window.addEventListener('error',e=>showErr(e.message));
 
 const BIZ=[
- {k:"Pastelaria",q:"Queria um bolo para sábado, 12 pessoas.",a:"Temos! Chocolate ou frutos vermelhos?",q2:"Chocolate. Levanto às 10h.",a2:"✓ Encomendado. Bolo de chocolate, sábado às 10h.",done:"ENCOMENDA REGISTADA"},
- {k:"Cabeleireiro",q:"Têm vaga amanhã às 10h para corte?",a:"Temos sim. Em que nome fica?",q2:"Ana Martins.",a2:"✓ Marcado. Corte amanhã às 10h, Ana Martins.",done:"MARCAÇÃO REGISTADA"},
- {k:"Restaurante",q:"Mesa para 6, sexta às 20h30?",a:"Temos. Em que nome fica?",q2:"Rui Costa.",a2:"✓ Reservado. Mesa para 6, sexta às 20h30.",done:"RESERVA REGISTADA"},
- {k:"Oficina",q:"Preciso de mudar as pastilhas. Têm vaga esta semana?",a:"Temos quinta às 9h ou sexta às 14h. Qual prefere?",q2:"Quinta às 9h.",a2:"✓ Marcado. Pastilhas, quinta às 9h.",done:"MARCAÇÃO REGISTADA"},
- {k:"Clínica",q:"Posso remarcar a consulta de quinta?",a:"Claro. Terça às 15h ou quarta às 11h?",q2:"Quarta às 11h.",a2:"✓ Remarcado. Consulta na quarta às 11h.",done:"CONSULTA REMARCADA"}
+ {k:"Pastelaria",t:"Olá, tenho uma pastelaria e gostava de experimentar o assistente de encomendas.",q:"Queria um bolo para sábado, 12 pessoas.",a:"Temos! Chocolate ou frutos vermelhos?",q2:"Chocolate. Levanto às 10h.",a2:"✓ Encomendado. Bolo de chocolate, sábado às 10h.",done:"ENCOMENDA REGISTADA"},
+ {k:"Cabeleireiro",t:"Olá, tenho um salão e gostava de experimentar o assistente de marcações.",q:"Têm vaga amanhã às 10h para corte?",a:"Temos sim. Em que nome fica?",q2:"Ana Martins.",a2:"✓ Marcado. Corte amanhã às 10h, Ana Martins.",done:"MARCAÇÃO REGISTADA"},
+ {k:"Restaurante",t:"Olá, tenho um restaurante e gostava de experimentar o assistente de reservas.",q:"Mesa para 6, sexta às 20h30?",a:"Temos. Em que nome fica?",q2:"Rui Costa.",a2:"✓ Reservado. Mesa para 6, sexta às 20h30.",done:"RESERVA REGISTADA"},
+ {k:"Oficina",t:"Olá, tenho uma oficina e gostava de experimentar o assistente de marcações.",q:"Preciso de mudar as pastilhas. Têm vaga esta semana?",a:"Temos quinta às 9h ou sexta às 14h. Qual prefere?",q2:"Quinta às 9h.",a2:"✓ Marcado. Pastilhas, quinta às 9h.",done:"MARCAÇÃO REGISTADA"},
+ {k:"Clínica",t:"Olá, tenho uma clínica e gostava de experimentar o assistente de marcações.",q:"Posso remarcar a consulta de quinta?",a:"Claro. Terça às 15h ou quarta às 11h?",q2:"Quarta às 11h.",a2:"✓ Remarcado. Consulta na quarta às 11h.",done:"CONSULTA REMARCADA"}
 ];
 const canvas=document.getElementById('c');
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,preserveDrawingBuffer:location.search.includes('pdb')});
@@ -491,13 +519,15 @@ get('glb',innerWidth<760?'corpo-m.glb':'corpo.glb',gl=>{ // no telemóvel vem um
 
 // ---------- conversa ----------
 const feed=document.getElementById('feed'),chips=document.getElementById('chips');let cur=0,timers=[],nod=0;
-const setChip=()=>[...chips.children].forEach((x,j)=>x.classList.toggle('on',j===cur));let cyc=true;
-[...chips.children].forEach((c,i)=>{c.onclick=()=>{cyc=false;cur=i;setChip();play()}});{const pk=document.getElementById('pick'),hr=document.querySelector('.hero'),f=()=>{const o=scrollY>hr.offsetHeight-innerHeight*.45;pk.classList.toggle('off',o);hr.classList.toggle('past',o)};addEventListener('scroll',f,{passive:true});f()}
+const chipEls=[...chips.querySelectorAll('.chip')],setChip=()=>chipEls.forEach((x,j)=>x.classList.toggle('on',j===cur));let cyc=true;
+// botões «Experimentar»: abrem o WhatsApp do assistente com uma mensagem pronta; se a pessoa escolheu um negócio, a mensagem diz qual
+const tryEls=[...document.querySelectorAll('.try,.trym,.tryp')],setTry=()=>{const u='https://wa.me/351913667443?text='+encodeURIComponent(cyc?'Olá, gostava de experimentar o assistente.':BIZ[cur].t);tryEls.forEach(a=>a.href=u)};
+chipEls.forEach((c,i)=>{c.onclick=()=>{cyc=false;cur=i;setChip();setTry();play()}});{const pk=document.getElementById('pick'),hr=document.querySelector('.hero'),f=()=>{const o=scrollY>hr.offsetHeight-innerHeight*.45;pk.classList.toggle('off',o);hr.classList.toggle('past',o)};addEventListener('scroll',f,{passive:true});f()}
 const later=(f,ms)=>timers.push(setTimeout(f,ms));
 const st=document.getElementById('st'),phn=document.getElementById('phn');let busy=false,lookT=0,hopT=0,tiltT=0;
 const wa=document.getElementById('wa');
 // no telemóvel as mensagens que já lá estão sobem devagar quando entra uma nova
-const flip=fn=>{if(!MOB)return fn();const cs=[...feed.children],y=cs.map(c=>c.getBoundingClientRect().top),r=fn(),ft=feed.getBoundingClientRect().top,all=[...feed.children],out=all.map(c=>c.getBoundingClientRect().top<ft-.5);
+const flip=fn=>{if(!MOB)return fn();const cs=[...feed.children],y=cs.map(c=>c.getBoundingClientRect().top),r=fn(),ft=feed.getBoundingClientRect().top+parseFloat(getComputedStyle(feed).paddingTop)-1,all=[...feed.children],out=all.map(c=>c.getBoundingClientRect().top<ft-.5);
  cs.forEach((c,i)=>{if(!c.isConnected)return;const d=y[i]-c.getBoundingClientRect().top;if(Math.abs(d)<.5)return;c.style.transition='none';c.style.transform='translateY('+d+'px)'});
  void feed.offsetHeight;cs.forEach(c=>{if(c.isConnected){c.style.transition='transform .42s cubic-bezier(.2,.85,.25,1),opacity .25s';c.style.transform=''}});
  // só ficam à vista as mensagens que cabem inteiras na janela
@@ -508,7 +538,7 @@ const bub=(cls,l,t)=>flip(()=>mk(cls,l,t));
 const pick=document.getElementById('pick');
 function play(){
  const b=BIZ[cur];timers.forEach(clearTimeout);timers=[];feed.innerHTML='';document.getElementById('hint').style.display='none';dress();
- busy=true;st.className='st';st.textContent='MENSAGEM NOVA';phn.textContent=b.k;wa.textContent='WhatsApp · '+b.k;mode='face';mood=1;hopT=1;let ty;
+ busy=true;st.className='st';st.textContent='MENSAGEM NOVA';phn.textContent=b.k;wa.textContent=b.k;mode='face';mood=1;hopT=1;let ty;
  const dots=()=>{mode='think';st.textContent='A RESPONDER…';ty=bub('ty','','<u></u><u></u><u></u>')};
  later(()=>{bub('in','',b.q);lookT=1.2},350);
  later(dots,1300);
@@ -522,7 +552,7 @@ function play(){
  if(cyc&&Q.get('auto')!=='0')later(()=>{cur=(cur+1)%BIZ.length;setChip();play()},11500);
 }
 // tocar no boneco: no telemóvel passa ao negócio seguinte (e ele troca de roupa)
-canvas.addEventListener('click',()=>{if(MOB){cyc=false;cur=(cur+1)%BIZ.length;setChip()}play()});
+canvas.addEventListener('click',()=>{if(MOB){cyc=false;cur=(cur+1)%BIZ.length;setChip();setTry()}play()});
 
 // ---------- movimento: o corpo fica quieto, a cabeça segue o rato ----------
 let mx=0,my=0,cheer=0,cheerT=0,nextG=5000,tT=-1e9,gOn=false,gx=0,gy=0,g0=null,b0=null;const COARSE=matchMedia('(pointer:coarse)').matches;const Q=new URLSearchParams(location.search);if(Q.get('sec'))document.querySelector('.hero').style.display='none';if(Q.get('ui')==='0')document.querySelectorAll('.top,.left,.phone,.hint,.more,.pick').forEach(e=>e.style.display='none');
