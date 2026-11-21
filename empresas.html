@@ -62,6 +62,8 @@
   }
   </script>
   <noscript><link rel="stylesheet" href="no-script.css?v=20261007-1"></noscript>
+  <style>/* Escritório: no telemóvel a frase fica dentro do cartão; com os cartões lado a lado fica na nota por baixo. Entre 861 e 1199 de largura o cartão é estreito e «com o Atendimento» não cabe numa linha. */
+  .esc-w{font-style:normal}.esc-m{display:none}@media (max-width:860px){.esc-m{display:block;margin:-.55rem 0 1.2rem;color:var(--dim);font-size:.78rem;line-height:1.5}}@media (min-width:861px) and (max-width:1199px){.esc-w{display:none}}</style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Saltar para o conteúdo</a>
@@ -166,7 +168,8 @@
           <li>Faturas e documentos passados para uma folha</li>
           <li>Respostas a mails preparadas</li>
         </ul>
-        <div class="solution-price"><strong>+ 49€</strong><span>/mês por tarefa + IVA</span></div>
+        <div class="solution-price"><strong>+ 49€</strong><span>/mês por tarefa + IVA<i class="esc-w">, com o Atendimento</i></span></div>
+        <p class="esc-m">Só o Escritório, com uma tarefa: 189€/mês com contrato de 12 meses, sem custo de instalação, ou 490€ de instalação + 149€/mês, sem fidelização.</p>
         <a href="#comecar" class="btn btn-ghost" data-solution="Escritório">Quero o Escritório</a>
       </article>
 
@@ -184,7 +187,7 @@
         <a href="#comecar" class="btn btn-ghost" data-solution="Imagem">Quero o site</a>
       </article>
     </div>
-    <p class="tax-note">Valores acrescidos de IVA. Atendimento: 189€/mês com contrato de 12 meses, ou 490€ de instalação + 149€/mês sem fidelização. Inclui 300 conversas por mês; uma conversa é tudo o que um cliente escreve num dia, e cada 100 conversas a mais custam 15€. Escritório: o preço por tarefa é junto com o Atendimento; sozinho custa 189€/mês com uma tarefa. Site: compromisso de 12 meses. As redes sociais são um serviço mensal à parte.</p>
+    <p class="tax-note">Valores acrescidos de IVA. Atendimento: 189€/mês com contrato de 12 meses, ou 490€ de instalação + 149€/mês sem fidelização. Inclui 300 conversas por mês; uma conversa é tudo o que um cliente escreve num dia, e cada 100 conversas a mais custam 15€. Escritório: com o Atendimento, mais 49€/mês por tarefa. Só o Escritório, com uma tarefa: 189€/mês com contrato de 12 meses, sem custo de instalação, ou 490€ de instalação + 149€/mês, sem fidelização. Site: compromisso de 12 meses. As redes sociais são um serviço mensal à parte.</p>
   </section>
 
   <section id="exemplos" class="section">
@@ -332,7 +335,7 @@
               <option value="">Escolher uma opção</option>
               <option value="Diagnóstico">Diagnóstico — 180€, descontados se avançar</option>
               <option value="Atendimento">Atendimento — 189€/mês</option>
-              <option value="Escritório">Escritório — + 49€/mês por tarefa</option>
+              <option value="Escritório">Escritório</option>
               <option value="Imagem">Imagem (site) — 390€ + 29€/mês</option>
               <option value="Plataforma à medida">Plataforma à medida — sob proposta</option>
               <option value="Gestão Presença">Gestão de Redes — Presença</option>

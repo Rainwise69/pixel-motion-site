@@ -19,6 +19,16 @@
 <meta name="twitter:title" content="Pixel Motion — O seu funcionário digital">
 <meta name="twitter:description" content="Um funcionário digital com inteligência artificial responde aos seus clientes no WhatsApp e trata das marcações, encomendas e reservas. Vídeo, fotografia e sites em Coimbra.">
 <meta name="twitter:image" content="https://pixelmotion.pt/assets/brand/og-funcionario-digital.jpg">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" as="image" href="assets/personagem/poster.webp" media="(max-width:759px)" fetchpriority="high">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js">
+<link rel="preload" as="fetch" crossorigin href="assets/personagem/corpo.glb" media="(min-width:760px)">
+<link rel="preload" as="fetch" crossorigin href="assets/personagem/corpo-m.glb" media="(max-width:759px)">
+<link rel="preload" as="fetch" crossorigin href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/gltf/draco_wasm_wrapper.js">
+<link rel="preload" as="fetch" crossorigin href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/gltf/draco_decoder.wasm">
+<script>(function(){var h=document.documentElement,S=function(b){h.style.setProperty('--botc',(b.offsetHeight+18)+'px')};try{if(!localStorage.getItem('pm_analytics_consent'))h.classList.add('cns')}catch(e){h.classList.add('cns')}
+document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.pm-consent-accept,.pm-consent-reject'))h.classList.remove('cns')},true);
+document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){var b=document.querySelector('.pm-consent');if(!b){h.classList.remove('cns');return}S(b);if(window.ResizeObserver)new ResizeObserver(function(){if(b.isConnected)S(b)}).observe(b)},0)})})();</script>
 <link rel="icon" type="image/png" sizes="180x180" href="/assets/brand/logo/png/favicon-180.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/brand/logo/png/favicon-180.png">
 <script type="application/ld+json">
@@ -125,6 +135,8 @@ section.s{padding:110px 40px}.w{max-width:1120px;margin:0 auto}
 .card h3{font:900 27px/1.05 Archivo;letter-spacing:-.02em;margin:14px 0 8px}.card p{margin:0;color:#3D3760}
 .card ul{list-style:none;padding:0;margin:16px 0 0}.card li{padding:9px 0 9px 26px;border-top:1px solid #ece4da;position:relative;font-size:16px}.card li:before{content:"✓";position:absolute;left:0;color:#1E9E5A;font-weight:800}
 .price{margin-top:auto;padding-top:22px}.price b{font:900 44px/1 Archivo;letter-spacing:-.03em}.price span{display:block;font-size:15px;color:#3D3760;margin-top:6px}
+/* só o Escritório: no telemóvel a frase fica dentro do cartão; com cartões lado a lado fica na linha por baixo (é a mesma frase nos dois sítios) */
+.price small{display:block;font-size:13px;line-height:1.45;color:#6b6585;margin-top:12px;padding-top:11px;border-top:1px solid #ece4da}@media(min-width:560px){.price small{display:none}}@media(max-width:559px){.esc-d{display:none}}
 .card.hot{background:#14102B;color:#fff;border-color:#14102B;box-shadow:0 30px 60px -30px rgba(40,20,90,.7)}.card.hot p,.card.hot .price span{color:#c9c3e6}.card.hot li{border-color:#2d2850}.card.hot .n{color:#FF7A2F}
 .tag{align-self:flex-start;font:700 11px/1 'JetBrains Mono';letter-spacing:.14em;background:#FF7A2F;color:#14102B;padding:7px 10px;border-radius:99px;margin-bottom:16px}
 .step b.num{display:grid;place-items:center;width:52px;height:52px;border-radius:16px;font:900 22px/1 Archivo;color:#fff;background:linear-gradient(135deg,#FF7A2F,#F5232E 45%,#C02A8F)}
@@ -146,19 +158,43 @@ body.wide .top nav a:not(.cta){display:none}
 .names{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.names span{font:700 16px/1 'Schibsted Grotesk';padding:13px 18px;border-radius:999px;border:1.5px solid #14102B;background:#fff}
 @media(min-width:900px){.works{grid-template-columns:repeat(3,1fr)}}
 .stage{display:none}
+@keyframes nudm{35%{transform:translateY(-7px)}70%{transform:translateY(2px)}}
+.wa,.pst{display:none}
 @media(max-width:759px){
- .hero{height:auto;min-height:100vh;display:flex;flex-direction:column}
- .left{display:contents}.left>*{position:relative;z-index:3}.left .eb{order:1;margin:74px 20px 0}.left h1{order:1;margin-left:20px;margin-right:20px}.left .lead{order:5;margin:0 20px 120px}.logo{white-space:nowrap;font-size:17px}.top nav a.cta{white-space:nowrap;padding:10px 15px;font-size:14px}.left h1{font-size:33px;margin-top:10px}.left .lead{font-size:16px;margin-top:10px}.eb{font-size:11px}
- .stage{display:block;height:clamp(175px,calc(100svh - 485px),300px);order:2;flex:none}
- .pick{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom))!important;width:auto;margin:0;padding:9px 8px 8px;border-radius:22px;z-index:60;transition:transform .35s,opacity .35s}.pick.off{transform:translateY(160%);opacity:0;pointer-events:none}
- .pick b{font:700 10.5px/1 'JetBrains Mono';letter-spacing:.14em;text-transform:uppercase;color:#FF7A2F;text-align:center}.pick span{display:none}
- .pick .chips{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:8px}
- .pick .chip{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 0 7px;border:0;border-radius:14px;background:rgba(255,255,255,.08);color:#fff;font:600 10.5px/1 'Schibsted Grotesk';letter-spacing:-.01em;min-width:0}
- .pick .chip:before{font-size:21px;line-height:1}.pick .chip:nth-child(1):before{content:'🧁'}.pick .chip:nth-child(2):before{content:'✂️'}.pick .chip:nth-child(3):before{content:'🍽️'}.pick .chip:nth-child(4):before{content:'🔧'}.pick .chip:nth-child(5):before{content:'🩺'}
+ /* primeiro ecrã à medida: título, boneco o maior possível, janela da conversa e barra dos negócios */
+ .hero{height:auto;min-height:100vh;display:flex;flex-direction:column;--vh:100vh;--bot:94px;--fs:min(calc((100vw - 40px)/9.47),46px);--ebf:min(calc((100vw - 40px)/33.3),12px);--top:calc(76px + var(--ebf) + 1.92*var(--fs));--chat:clamp(132px,calc(var(--vh) - var(--top) - 82vw - var(--bot)),196px);--stg:clamp(160px,calc(var(--vh) - var(--top) - var(--chat) - var(--bot)),82vw)}
+ @supports(height:100svh){.hero{--vh:100svh}}
+ /* primeira visita: a barra dos negócios sobe para cima do aviso de cookies e a página guarda lugar aos dois */
+ html.cns .hero{--pk:84px;--bot:calc(var(--botc,157px) + var(--pk));--av:calc(var(--vh) - var(--top) - var(--bot));--chat:clamp(clamp(104px,calc(var(--av) - 160px),132px),calc(var(--av) - 82vw),196px)}
+ html.cns .pick{bottom:var(--botc,157px)!important}
+ html.cns .hero:after{height:calc(var(--bot) - 2px);background:linear-gradient(rgba(239,230,216,0),#EFE6D8 14px)}
+ @media(max-height:799px){html.cns .hero{--pk:68px}html.cns .pick b{display:none}html.cns .pick .chips{margin-top:0}}
+ @media(max-height:719px){html.cns .hero{--pk:57px}html.cns .pick .chip{padding:12px 0}html.cns .pick .chip:before{display:none}}
+ /* ecrãs muito baixos: não cabe tudo com o aviso aberto, a conversa fica logo abaixo até a pessoa responder ao aviso */
+ @media(max-height:619px){html.cns .hero{--chat:132px;--stg:clamp(150px,calc(var(--av) + 8px),82vw)}html.cns .phone{margin-top:22px}}
+ .hero:after{content:"";position:fixed;left:0;right:0;bottom:0;height:calc(var(--bot) + 30px);background:linear-gradient(rgba(239,230,216,0),rgba(239,230,216,.97) 46%);z-index:50;pointer-events:none;transition:opacity .35s}.hero.past:after{opacity:0}
+ canvas#c{-webkit-tap-highlight-color:transparent}
+ .top{padding:18px 20px}.logo{white-space:nowrap;font-size:min(17px,4.1vw)}.top nav a.cta{white-space:nowrap;padding:9px 13px;font-size:13.5px}
+ .left{display:contents}.left>*{position:relative;z-index:3}
+ .left .eb{order:1;margin:68px 20px 0;font-size:var(--ebf);letter-spacing:.12em;white-space:nowrap}
+ .left h1{order:1;margin:8px 20px 0;font-size:var(--fs);white-space:nowrap}.left h1 em{display:block}
+ .left .lead{order:5;margin:16px 20px 44px;font-size:16px}.eb{font-size:11px}
+ .stage{display:block;position:relative;height:var(--stg);order:2;flex:none;pointer-events:none;transition:height .35s}
+ .pst{display:block;position:absolute;left:50%;top:-10%;height:120%;width:auto;max-width:none;transform:translateX(-50%);transition:opacity .3s;user-select:none;-webkit-user-select:none}.stage.rdy .pst{opacity:0}
+ .pick{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom))!important;width:auto;margin:0;padding:8px 8px 7px;border-radius:22px;z-index:60;transition:transform .35s,opacity .35s,bottom .35s}.pick.off{transform:translateY(160%);opacity:0;pointer-events:none}.pick.nudge{animation:nudm .6s ease}
+ .pick b{font:700 10px/1 'JetBrains Mono';letter-spacing:.14em;text-transform:uppercase;color:#FF7A2F;text-align:center}.pick span{display:none}
+ .pick .chips{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:6px}
+ .pick .chip{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;border:0;border-radius:14px;background:rgba(255,255,255,.08);color:#fff;font:600 min(10.5px,2.75vw)/1 'Schibsted Grotesk';letter-spacing:-.01em;min-width:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+ .pick .chip:before{font-size:19px;line-height:1}.pick .chip:nth-child(1):before{content:'🧁'}.pick .chip:nth-child(2):before{content:'✂️'}.pick .chip:nth-child(3):before{content:'🍽️'}.pick .chip:nth-child(4):before{content:'🔧'}.pick .chip:nth-child(5):before{content:'🩺'}
  .pick .chip.on{background:#FF7A2F;color:#14102B}
- .phone{display:block;position:relative;right:auto!important;bottom:auto;width:auto;height:auto;margin:6px 20px 18px;transform:none;animation:none;padding:0;border-radius:22px;background:none;box-shadow:0 20px 40px -24px rgba(40,20,90,.5);order:4;--v:7.5px}
- .phone:before,.ph-top{display:none}.scr{border-radius:22px;border:1.5px solid #14102B}#feed{min-height:150px}.phone .ph-bar{display:none}
+ /* a conversa é uma janela: as mensagens novas entram por baixo e as antigas sobem e saem */
+ .phone{display:block;position:relative;right:auto!important;bottom:auto;width:auto;height:auto;margin:0 20px;transform:none;animation:none;padding:0;border-radius:22px;background:none;box-shadow:0 20px 40px -24px rgba(40,20,90,.5);order:4;--v:8px}
+ .phone:before,.ph-top,.phone .ph-bar{display:none}.scr{height:var(--chat);border-radius:22px;border:1.5px solid #14102B}
+ #feed{justify-content:flex-end}.m{transition:opacity .25s}.m.out{opacity:0}
+ .wa{display:flex;align-items:center;gap:6px;position:absolute;left:14px;top:-10px;z-index:2;font:700 9.5px/1 'JetBrains Mono';letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#14102B;padding:6px 10px 6px 8px;border-radius:99px}
+ .wa:before{content:"";width:7px;height:7px;border-radius:50%;background:#35E08A;box-shadow:0 0 0 3px rgba(53,224,138,.22)}
 }
+@media(max-width:345px){.logo span{display:none}}
 
 .skip-link{position:fixed;top:12px;left:16px;z-index:2000;padding:12px 18px;background:#fff;color:#14102B;border-radius:8px;transform:translateY(-160%)}.skip-link:focus{transform:none}
 footer.pe{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px;align-items:start;padding:54px 40px 30px}footer.pe .logo{color:#fff}footer.pe p{margin:14px 0 0;max-width:28em}
@@ -170,7 +206,7 @@ footer.pe .fim{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 26px;justify
 .pm-consent-actions{display:flex;align-items:center;gap:10px;flex:none}.pm-consent-actions .btn{min-height:44px;padding:12px 16px;font-size:15px;background:#FF7A2F;border-color:#FF7A2F;color:#14102B;cursor:pointer}
 .pm-consent-reject,.pm-privacy-settings{appearance:none;border:0;background:transparent;color:inherit;font:500 12px/1.3 'JetBrains Mono';text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .pm-consent-reject{color:#c9c3e6;padding:11px}.pm-privacy-settings{opacity:.72;padding:0;text-align:left}.pm-privacy-settings:hover,.pm-privacy-settings:focus-visible{opacity:1}
-@media(max-width:700px){.pm-consent{align-items:stretch;flex-direction:column;gap:14px;bottom:10px;width:calc(100% - 20px)}.pm-consent-actions{display:grid;grid-template-columns:.8fr 1.2fr}.pm-consent-actions .btn,.pm-consent-reject{width:100%}}
+@media(max-width:759px){.pm-consent{align-items:stretch;flex-direction:column;gap:8px;bottom:10px;width:calc(100% - 20px);padding:10px 14px;border-radius:20px}.pm-consent-copy strong{font-size:15px;line-height:1.15}.pm-consent-copy p{margin-top:3px;font-size:12px;line-height:1.4}.pm-consent-actions{display:grid;grid-template-columns:.8fr 1.2fr;gap:8px}.pm-consent-actions .btn{min-height:38px;padding:9px 12px;font-size:14px}.pm-consent-actions .btn,.pm-consent-reject{width:100%}.pm-consent-reject{padding:9px}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head><body>
@@ -186,9 +222,9 @@ footer.pe .fim{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 26px;justify
  <h1>Olá. Sou o seu <em>funcionário digital.</em></h1>
  <p class="lead">Respondo sozinho aos seus clientes e trato das marcações, encomendas e reservas. Na hora, de dia e de noite.</p>
 </div>
-<div class="stage" id="stage"></div>
-<div class="pick" id="pick"><b>E no seu negócio?</b><span>CARREGUE E VEJA-O A TRABALHAR</span><div class="chips" id="chips"></div></div>
-<div class="phone"><div class="scr"><div class="ph-top"><i></i><div><b id="phn">Pastelaria</b><span>funcionário digital ligado</span></div></div><div id="feed"><p class="idle">As mensagens dos seus clientes chegam aqui.</p></div><div class="ph-bar"><div class="st" id="st">À espera de mensagens</div></div></div></div>
+<div class="stage" id="stage"><picture><source media="(max-width:759px)" srcset="assets/personagem/poster.webp"><img class="pst" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" width="750" height="720" fetchpriority="high"></picture></div>
+<div class="pick" id="pick"><b>E no seu negócio?</b><span>CARREGUE E VEJA-O A TRABALHAR</span><div class="chips" id="chips"><button type="button" class="chip on">Pastelaria</button><button type="button" class="chip">Cabeleireiro</button><button type="button" class="chip">Restaurante</button><button type="button" class="chip">Oficina</button><button type="button" class="chip">Clínica</button></div></div>
+<div class="phone"><span class="wa" id="wa">WhatsApp · Pastelaria</span><div class="scr"><div class="ph-top"><i></i><div><b id="phn">Pastelaria</b><span>funcionário digital ligado</span></div></div><div id="feed"><p class="idle">As mensagens dos seus clientes chegam aqui.</p></div><div class="ph-bar"><div class="st" id="st">À espera de mensagens</div></div></div></div>
 <a class="more" href="#como">↓ VER COMO FUNCIONA</a>
 </section>
 
@@ -212,20 +248,21 @@ footer.pe .fim{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 26px;justify
    <div class="price"><b>189€</b><span>por mês, com contrato de 12 meses<br>ou 490€ + 149€/mês, sem fidelização</span></div></div>
   <div class="card"><span class="n">02 · FUNCIONÁRIO DIGITAL</span><h3>Escritório</h3><p>A IA trata da papelada. Escolhe as tarefas que quer.</p>
    <ul><li>Resumo dos pedidos do dia</li><li>Orçamentos preparados</li><li>Faturas, documentos e mails</li></ul>
-   <div class="price"><b>+ 49€</b><span>por mês e por tarefa,<br>junto com o Atendimento</span></div></div>
+   <div class="price"><b>+ 49€</b><span>por mês e por tarefa,<br>junto com o Atendimento</span><small>Só o Escritório, com uma tarefa: 189€/mês com contrato de 12 meses, sem custo de instalação, ou 490€ de instalação + 149€/mês, sem fidelização.</small></div></div>
   <div class="card"><span class="n">03 · SER VISTO</span><h3>Imagem</h3><p>O site é a base. O resto junta-se quando quiser.</p>
    <ul><li>Site de uma página, com alojamento</li><li>Vídeo desde 790€ · Fotografia desde 350€</li><li>Redes sociais desde 450€/mês</li></ul>
    <div class="price"><b>390€</b><span>+ 29€ por mês,<br>pelo site</span></div></div>
  </div>
- <p class="note">Valores sem IVA.</p>
+ <p class="note"><span class="esc-d">Só o Escritório, com uma tarefa: 189€/mês com contrato de 12 meses, sem custo de instalação, ou 490€ de instalação + 149€/mês, sem fidelização. </span>Valores sem IVA.</p>
 </div></section>
 
 <section class="s" id="comeca"><div class="w">
  <p class="eb">COMO COMEÇA</p>
  <h2>Falar connosco <em>não custa nada.</em></h2>
+ <p class="sub">A primeira conversa é grátis. O diagnóstico custa 180€ + IVA. Se avançar em 30 dias, descontamos os 180€ no primeiro pagamento.</p>
  <div class="g3">
   <div class="card step"><span class="n">01</span><h3>Primeira conversa</h3><p>Por WhatsApp ou por chamada. Conta-nos o que faz e o que lhe tira mais tempo.</p><span class="pill g">GRÁTIS</span></div>
-  <div class="card step"><span class="n">02</span><h3>Diagnóstico</h3><p>Visitamos o seu negócio durante 45 minutos e entregamos um plano com preços.</p><span class="pill o">180€ · DESCONTADOS SE AVANÇAR</span></div>
+  <div class="card step"><span class="n">02</span><h3>Diagnóstico</h3><p>Visitamos o seu negócio durante 45 minutos e entregamos um plano com preços.</p><span class="pill o">180€ + IVA · DESCONTADOS SE AVANÇAR EM 30 DIAS</span></div>
   <div class="card step"><span class="n">03</span><h3>Arranque</h3><p>Escolhe uma primeira coisa. Montamos, testamos consigo e pomos a trabalhar.</p><span class="pill">DATA MARCADA</span></div>
  </div>
 </div></section>
@@ -299,7 +336,7 @@ const BIZ=[
  {k:"Clínica",q:"Posso remarcar a consulta de quinta?",a:"Claro. Terça às 15h ou quarta às 11h?",q2:"Quarta às 11h.",a2:"✓ Remarcado. Consulta na quarta às 11h.",done:"CONSULTA REMARCADA"}
 ];
 const canvas=document.getElementById('c');
-const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,preserveDrawingBuffer:true});
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,preserveDrawingBuffer:location.search.includes('pdb')});
 renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.LinearToneMapping;renderer.toneMappingExposure=1.25;
 const scene=new THREE.Scene();
 scene.environment=new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(),.04).texture;
@@ -377,7 +414,10 @@ const PIV=new THREE.Vector3(-0.0135,0.765,-0.03);
 const headPivot=new THREE.Group(),bodyG=new THREE.Group(),cubes=[];let B={},neckM=null,ring=null,shown=0;
 // cada negócio tem o seu corpo, com a sua roupa; enquanto um não chega, fica o que estava
 const bodies=[],pend=[],PALM=[null,[.279,.693,.015],[.279,.686,.022],[.277,.694,.033],[.279,.693,.056]];
-function dress(){const s=bodies[cur]?cur:shown;shown=s;bodies.forEach((b,i)=>{if(b)b.root.visible=i===s});if(bodies[s])B=bodies[s].B;if(ring)ring.visible=s===0}
+let spinT=0,spinTo=-1;
+function wear(s){shown=s;bodies.forEach((b,i)=>{if(b)b.root.visible=i===s});if(bodies[s])B=bodies[s].B;if(ring)ring.visible=s===0}
+// trocar de roupa: dá uma volta e aparece vestido para o outro negócio (a troca faz-se quando está de costas)
+function dress(){const s=bodies[cur]?cur:shown;if(s===shown||!bodies[shown]||(spinT>0&&spinT<.5)){spinTo=-1;wear(s);return}spinTo=s;if(spinT<=0)spinT=1}
 function rig(root){const b={};root.updateMatrixWorld(true);for(const n of['armL1','armL2','armR1','armR2','spine']){const o=root.getObjectByName(n);if(!o)continue;o.userData.rest=o.quaternion.clone();o.userData.P=o.parent.getWorldQuaternion(new THREE.Quaternion());o.userData.Pi=o.userData.P.clone().invert();b[n]=o}return b}
 // o que leva na mão: pousado na palma e preso ao braço, para o acompanhar
 function hold(i){const bd=bodies[i],o=pend[i];if(!bd||!o||o.parent)return;const g=new THREE.Group();g.add(o);g.position.set(...PALM[i]);bd.root.add(g);bd.root.updateMatrixWorld(true);if(bd.B.armL2)bd.B.armL2.attach(g)}
@@ -388,9 +428,9 @@ const _d=new THREE.Quaternion(),_q=new THREE.Quaternion();
 function pose(n,rots){const b=B[n];if(!b)return;_d.identity();for(const[ax,an]of rots)_d.premultiply(_q.setFromAxisAngle(AX[ax],an));b.quaternion.copy(b.userData.Pi).multiply(_d).multiply(b.userData.P).multiply(b.userData.rest)}
 // os modelos vêm dentro da página (pré-visualização) ou de ficheiros ao lado (site publicado)
 const B64=id=>{const e=document.getElementById(id),s=e?e.textContent.trim():'';return s&&s[0]!=='_'?Uint8Array.from(atob(s),c=>c.charCodeAt(0)).buffer:null},AS='assets/personagem/';
-const LD=new GLTFLoader().setDRACOLoader(new DRACOLoader().setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/gltf/'));
-const get=(id,file,ok)=>{const b=B64(id),er=e=>showErr(e.message||e);b?LD.parse(b,'',ok,er):LD.load(AS+file,ok,undefined,er)};
-get('glb','corpo.glb',gl=>{
+const LD=new GLTFLoader().setDRACOLoader(new DRACOLoader().setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/gltf/').preload());
+const get=(id,file,ok,ko)=>{const b=B64(id),er=e=>{showErr(e.message||e);ko&&ko()};b?LD.parse(b,'',ok,er):LD.load(AS+file,ok,undefined,er)};
+get('glb',innerWidth<760?'corpo-m.glb':'corpo.glb',gl=>{ // no telemóvel vem uma versão mais leve
  const root=gl.scene,parts={};for(const n of['Body','Head'])parts[n]=root.getObjectByName(n);
  const k=2/1.154;who.scale.setScalar(k);who.position.y=-1;who.rotation.y=FACE;
  root.traverse(o=>{if(o.isMesh&&o.material.name==='Material.001'){o.material.metalness=0;o.material.color.setRGB(1.16,1.13,1.1)}});
@@ -410,7 +450,10 @@ get('glb','corpo.glb',gl=>{
  headPivot.add(parts.Head);bodyG.add(root);who.add(bodyG);who.add(headPivot);
  [[0x55B4F0,.06,[.30,1.07,0]],[0x9B6BF2,.054,[.365,.985,-.02]],[0xF5A9C0,.048,[.31,.915,.03]],[0xFF7A2F,.052,[-.33,1.085,.02]]].forEach(([c,sz,p])=>{const gp=new THREE.Mesh(new RoundedBoxGeometry(sz,sz,sz,5,sz*.24),new THREE.MeshPhysicalMaterial({color:c,roughness:.25,clearcoat:1}));gp.position.set(...p);gp.userData.c=new THREE.Vector3(...p);who.add(gp);cubes.push(gp)});
  // os outros corpos chegam a seguir, um de cada vez
- ['cabeleireiro','restaurante','oficina','clinica'].forEach((n,j)=>{const i=j+1;get('g'+i,'corpo-'+n+'.glb',g2=>{const r=g2.scene;r.traverse(o=>{o.frustumCulled=false;if(o.isMesh){o.material.metalness=0;o.material.envMapIntensity=.45}});bodies[i]={root:r,B:rig(r)};r.visible=false;bodyG.add(r);hold(i);dress()})});
+ // um de cada vez, e primeiro o do negócio que estiver escolhido
+ const NM=['cabeleireiro','restaurante','oficina','clinica'],todo=[1,2,3,4];
+ const more=()=>{if(!todo.length)return;const k=todo.indexOf(cur),i=todo.splice(k<0?0:k,1)[0];get('g'+i,'corpo-'+NM[i-1]+'.glb',g2=>{const r=g2.scene;r.traverse(o=>{o.frustumCulled=false;if(o.isMesh){o.material.metalness=0;o.material.envMapIntensity=.45}});bodies[i]={root:r,B:rig(r)};r.visible=false;bodyG.add(r);hold(i);dress();more()},more)};
+ more();
  const aco=new THREE.MeshPhysicalMaterial({color:0xdfe3ea,metalness:.9,roughness:.25}),ext=(s,d)=>new THREE.ExtrudeGeometry(s,{depth:d,bevelEnabled:true,bevelThickness:d*.25,bevelSize:d*.25,bevelSegments:3,curveSegments:28});
  // tesoura
  {const pk=new THREE.MeshPhysicalMaterial({color:0xE0457B,roughness:.3,clearcoat:1}),s=new THREE.Group();
@@ -442,41 +485,59 @@ get('glb','corpo.glb',gl=>{
   m.rotation.y=-.18;pend[4]=m;hold(4)}
  get('p2','travessa.glb',g2=>{const o=g2.scene;o.scale.setScalar(.2);o.traverse(m=>{if(m.isMesh)m.material.metalness=Math.min(m.material.metalness,.4)});pend[2]=o;hold(2)});
  dress();window.__ready=true;
+ // chegou: sai a imagem parada e ele cumprimenta
+ requestAnimationFrame(()=>requestAnimationFrame(()=>document.getElementById('stage').classList.add('rdy')));setTimeout(()=>{if(!busy){hopT=1;cheerT=.45}},500);
 });
 
 // ---------- conversa ----------
 const feed=document.getElementById('feed'),chips=document.getElementById('chips');let cur=0,timers=[],nod=0;
 const setChip=()=>[...chips.children].forEach((x,j)=>x.classList.toggle('on',j===cur));let cyc=true;
-BIZ.forEach((b,i)=>{const c=document.createElement('button');c.className='chip'+(i?'':' on');c.textContent=b.k;c.onclick=()=>{cyc=false;cur=i;setChip();play()};chips.appendChild(c)});{const pk=document.getElementById('pick'),hr=document.querySelector('.hero'),f=()=>pk.classList.toggle('off',scrollY>hr.offsetHeight-innerHeight*.45);addEventListener('scroll',f,{passive:true});f()}
+[...chips.children].forEach((c,i)=>{c.onclick=()=>{cyc=false;cur=i;setChip();play()}});{const pk=document.getElementById('pick'),hr=document.querySelector('.hero'),f=()=>{const o=scrollY>hr.offsetHeight-innerHeight*.45;pk.classList.toggle('off',o);hr.classList.toggle('past',o)};addEventListener('scroll',f,{passive:true});f()}
 const later=(f,ms)=>timers.push(setTimeout(f,ms));
 const st=document.getElementById('st'),phn=document.getElementById('phn');let busy=false,lookT=0,hopT=0,tiltT=0;
-function bub(cls,l,t){const d=document.createElement('div');d.className='m '+cls;d.innerHTML=(l?'<small>'+l+'</small>':'')+t;feed.appendChild(d);return d}
+const wa=document.getElementById('wa');
+// no telemóvel as mensagens que já lá estão sobem devagar quando entra uma nova
+const flip=fn=>{if(!MOB)return fn();const cs=[...feed.children],y=cs.map(c=>c.getBoundingClientRect().top),r=fn(),ft=feed.getBoundingClientRect().top,all=[...feed.children],out=all.map(c=>c.getBoundingClientRect().top<ft-.5);
+ cs.forEach((c,i)=>{if(!c.isConnected)return;const d=y[i]-c.getBoundingClientRect().top;if(Math.abs(d)<.5)return;c.style.transition='none';c.style.transform='translateY('+d+'px)'});
+ void feed.offsetHeight;cs.forEach(c=>{if(c.isConnected){c.style.transition='transform .42s cubic-bezier(.2,.85,.25,1),opacity .25s';c.style.transform=''}});
+ // só ficam à vista as mensagens que cabem inteiras na janela
+ all.forEach((c,i)=>c.classList.toggle('out',out[i]));return r};
+const mk=(cls,l,t)=>{const d=document.createElement('div');d.className='m '+cls;d.innerHTML=(l?'<small>'+l+'</small>':'')+t;feed.appendChild(d);return d};
+const bub=(cls,l,t)=>flip(()=>mk(cls,l,t));
 // o funcionário digital responde sozinho: pergunta, resposta, pergunta, registado
 const pick=document.getElementById('pick');
 function play(){
  const b=BIZ[cur];timers.forEach(clearTimeout);timers=[];feed.innerHTML='';document.getElementById('hint').style.display='none';dress();
- busy=true;st.className='st';st.textContent='MENSAGEM NOVA';phn.textContent=b.k;mode='face';mood=1;hopT=1;let ty;
+ busy=true;st.className='st';st.textContent='MENSAGEM NOVA';phn.textContent=b.k;wa.textContent='WhatsApp · '+b.k;mode='face';mood=1;hopT=1;let ty;
  const dots=()=>{mode='think';st.textContent='A RESPONDER…';ty=bub('ty','','<u></u><u></u><u></u>')};
  later(()=>{bub('in','',b.q);lookT=1.2},350);
  later(dots,1300);
- later(()=>{ty.remove();mode='face';talkT=1.4;bub('ai','',b.a);st.textContent='RESPONDEU SOZINHO'},2300);
+ later(()=>{flip(()=>{ty.remove();mk('ai','',b.a)});mode='face';talkT=1.4;st.textContent='RESPONDEU SOZINHO'},2300);
  later(()=>{bub('in','',b.q2);lookT=1},4000);
  later(dots,4800);
- later(()=>{ty.remove();mode='ok';nod=1;cheerT=1;hopT=1;bub('ai fin','',b.a2);st.className='st on';st.textContent='✓ '+b.done},5700);
+ later(()=>{flip(()=>{ty.remove();mk('ai fin','',b.a2)});mode='ok';nod=1;cheerT=1;hopT=1;st.className='st on';st.textContent='✓ '+b.done},5700);
  later(()=>{mode='face';mood=2},7700);
  later(()=>{mood=1;busy=false;pick.classList.remove('nudge');void pick.offsetWidth;pick.classList.add('nudge')},9300);
  // enquanto ninguém escolhe, vai mostrando os outros negócios
  if(cyc&&Q.get('auto')!=='0')later(()=>{cur=(cur+1)%BIZ.length;setChip();play()},11500);
 }
-canvas.addEventListener('click',play);
+// tocar no boneco: no telemóvel passa ao negócio seguinte (e ele troca de roupa)
+canvas.addEventListener('click',()=>{if(MOB){cyc=false;cur=(cur+1)%BIZ.length;setChip()}play()});
 
 // ---------- movimento: o corpo fica quieto, a cabeça segue o rato ----------
-let mx=0,my=0,cheer=0,cheerT=0,nextG=5000;const Q=new URLSearchParams(location.search);if(Q.get('sec'))document.querySelector('.hero').style.display='none';if(Q.get('ui')==='0')document.querySelectorAll('.top,.left,.phone,.hint,.more,.pick').forEach(e=>e.style.display='none');
-if(Q.get('mx')){mx=+Q.get('mx');my=+(Q.get('my')||0)}else{addEventListener('mousemove',e=>{mx=e.clientX/innerWidth*2-1;my=e.clientY/innerHeight*2-1});const tch=e=>{const p=e.touches[0],r=document.getElementById('stage').getBoundingClientRect();if(!p)return;mx=p.clientX/innerWidth*2-1;my=Math.max(-1,Math.min(1,(p.clientY-(r.top+r.height*.3))/(innerHeight*.45)))};addEventListener('touchstart',tch,{passive:true});addEventListener('touchmove',tch,{passive:true})}
+let mx=0,my=0,cheer=0,cheerT=0,nextG=5000,tT=-1e9,gOn=false,gx=0,gy=0,g0=null,b0=null;const COARSE=matchMedia('(pointer:coarse)').matches;const Q=new URLSearchParams(location.search);if(Q.get('sec'))document.querySelector('.hero').style.display='none';if(Q.get('ui')==='0')document.querySelectorAll('.top,.left,.phone,.hint,.more,.pick').forEach(e=>e.style.display='none');
+if(Q.get('mx')){mx=+Q.get('mx');my=+(Q.get('my')||0)}else{addEventListener('mousemove',e=>{mx=e.clientX/innerWidth*2-1;my=e.clientY/innerHeight*2-1});
+ const tch=e=>{const p=e.touches[0];if(!p)return;const r=document.getElementById('stage').getBoundingClientRect();tT=performance.now();mx=p.clientX/innerWidth*2-1;my=Math.max(-1,Math.min(1,(p.clientY-(r.top+r.height*.3))/(innerHeight*.45)))};
+ addEventListener('touchstart',tch,{passive:true});addEventListener('touchmove',tch,{passive:true});addEventListener('touchend',()=>{tT=performance.now()},{passive:true});
+ // Android: acompanha a inclinação do telemóvel (no iPhone isso pede autorização ao visitante, por isso não se usa)
+ addEventListener('deviceorientation',e=>{if(e.gamma==null||e.beta==null)return;if(g0==null){g0=e.gamma;b0=e.beta}g0+=(e.gamma-g0)*.01;b0+=(e.beta-b0)*.01;gx=Math.max(-1,Math.min(1,(g0-e.gamma)/18));gy=Math.max(-1,Math.min(1,(b0-e.beta)/18));gOn=true})}
+if(Q.get('debug'))window.__dbg=()=>({mx:+mx.toFixed(3),my:+my.toFixed(3),gOn,gx:+gx.toFixed(3),gy:+gy.toFixed(3),spinT:+spinT.toFixed(2),shown,cur});
 const CZ=Q.get('cz');if(Q.get('b')){cur=+Q.get('b');cyc=false;setChip()}if(Q.get('ch'))cheerT=99;
 if(Q.get('m'))mode=Q.get('m');if(Q.get('auto')!=='0'&&!Q.get('m'))setTimeout(()=>{if(!busy)play()},2200);
-const MS=+(Q.get('ms')||1.3),MC=+(Q.get('mc')||.4);let MOB=false;function size(){const w=innerWidth,mob=MOB=w<760,hero=document.querySelector('.hero'),h=mob?hero.clientHeight:innerHeight;renderer.setSize(w,h,false);cam.aspect=w/h;const u=Math.min(h,w*.68),V=mob?3.09:(1.82+.16*Math.max(0,Math.min(1,(w/h-1.2)/.3)))*h/u,lw=w-1.05*u-80;
- document.body.classList.toggle('wide',w/h>1.45); document.body.classList.toggle('nar',!mob&&lw<200);const R=document.documentElement.style;R.setProperty('--u',u+'px');R.setProperty('--lw',(lw<200?400:Math.min(400,lw))+'px');
+const MS=+(Q.get('ms')||1.3),MC=+(Q.get('mc')||.4);let MOB=false,SZ=[0,0];function size(){const w=innerWidth,mob=MOB=w<760,sg=document.getElementById('stage'),hs=sg.offsetHeight||170,h=mob?Math.round(hs*1.2):innerHeight;
+ canvas.style.top=mob?(sg.offsetTop-hs*.1)+'px':'';canvas.style.bottom=mob?'auto':'';canvas.style.height=mob?h+'px':'';
+ if(w!==SZ[0]||h!==SZ[1]){SZ=[w,h];renderer.setSize(w,h,false)}cam.aspect=w/h;const u=Math.min(h,w*.68),V=mob?3.09:(1.82+.16*Math.max(0,Math.min(1,(w/h-1.2)/.3)))*h/u,lw=w-1.05*u-80;
+ document.body.classList.toggle('wide',!mob&&w/h>1.45); document.body.classList.toggle('nar',!mob&&lw<200);const R=document.documentElement.style;R.setProperty('--u',u+'px');R.setProperty('--lw',(lw<200?400:Math.min(400,lw))+'px');
  const ph=document.querySelector('.phone');if(ph)ph.style.right=.72*u+'px';
  const nar=lw<200,L=document.querySelector('.left'),pk=document.getElementById('pick');
  if(!mob&&L&&pk){const pb=.09*u,phL=w-1.02*u,phT=h-pb-.6*u,set=x=>R.setProperty('--lw',x+'px');
@@ -488,12 +549,14 @@ const MS=+(Q.get('ms')||1.3),MC=+(Q.get('mc')||.4);let MOB=false;function size()
   // janelas baixas (portáteis): o título encolhe até caber por cima da caixa de escolha
   let ts=1;R.setProperty('--ts',1);while(ts>.45&&L.getBoundingClientRect().bottom>pk.getBoundingClientRect().top-16){ts-=.06;R.setProperty('--ts',ts)}}
  else if(pk){pk.style.bottom='';R.setProperty('--ts',1)}
- cam.position.set(mob?0:-(w/2-.43*u)*V/h,mob?.3:-.74+V/2,V/.4987);if(mob){const sg=document.getElementById('stage'),hs=sg.offsetHeight||170,V2=MS*h/hs;cam.position.set(0,MC-(h/2-(sg.offsetTop+hs/2))*V2/h,V2/.4987);const yb=sg.offsetTop+hs,mk='linear-gradient(#000 '+(yb-34)+'px,transparent '+yb+'px)';canvas.style.webkitMaskImage=canvas.style.maskImage=mk}else canvas.style.webkitMaskImage=canvas.style.maskImage='';if(CZ){const c=CZ.split(',').map(Number);cam.position.set(c[0],c[1],c[2]);cam.lookAt(c[3],c[4],c[5])}cam.updateProjectionMatrix()}
-addEventListener('resize',size);size();
+ cam.position.set(mob?0:-(w/2-.43*u)*V/h,mob?.3:-.74+V/2,V/.4987);if(mob)cam.position.set(.045,MC,MS*1.2/.4987);if(CZ){const c=CZ.split(',').map(Number);cam.position.set(c[0],c[1],c[2]);cam.lookAt(c[3],c[4],c[5])}cam.updateProjectionMatrix()}
+addEventListener('resize',size);size();if(window.ResizeObserver)new ResizeObserver(size).observe(document.getElementById('stage'));
 let last=0;
 function loop(t){
- if(scrollY>canvas.clientHeight){last=t;requestAnimationFrame(loop);return}
+ if(scrollY>canvas.offsetTop+canvas.clientHeight){last=t;requestAnimationFrame(loop);return}
  const dt=Math.min(.05,(t-last)/1000);last=t;
+ // sem rato: depois de levantar o dedo volta a olhar em frente e vai espreitando à volta (ou segue a inclinação)
+ if(COARSE&&!Q.get('mx')&&t-tT>1500){const wx=gOn?gx:Math.sin(t*.00043)*Math.sin(t*.00017+1)*.55,wy=gOn?gy:Math.sin(t*.00031+2)*.22-.05;mx+=(wx-mx)*.035;my+=(wy-my)*.035}
  const lk=lookT>0;if(lk)lookT-=dt;if(talkT>0)talkT-=dt;
  const lx=MOB?0:-1;ex+=((lk?lx:mx)-ex)*.12;ey+=((lk?(MOB?.9:.25):my)-ey)*.12;
  const ty=HEAD0+(lk?(MOB?0:-.38):THREE.MathUtils.clamp(mx*.4,-.36,.36));let tx=lk?(MOB?.17:.05):THREE.MathUtils.clamp(my*.2,-.16,.17);
@@ -502,11 +565,12 @@ function loop(t){
  if(!busy&&!Q.get('mx')&&t>nextG){nextG=t+4500+Math.random()*3500;const r=Math.random();if(r<.34)hopT=1;else if(r<.67)cheerT=.5;else{tiltT=1;mood=2;setTimeout(()=>{if(!busy)mood=1},1400)}}
  let hop=0;if(hopT>0){hopT-=dt*2.4;hop=Math.max(0,Math.sin((1-hopT)*Math.PI))}
  let tilt=0;if(tiltT>0){tiltT-=dt*.75;tilt=Math.sin((1-tiltT)*Math.PI)*.15}
+ let spin=0;if(spinT>0){spinT-=dt/.62;const p=1-Math.max(0,spinT);if(p>=.5&&spinTo>=0){wear(spinTo);spinTo=-1}spin=(p<.5?4*p*p*p:1-Math.pow(2-2*p,3)/2)*Math.PI*2;hop=Math.max(hop,Math.sin(p*Math.PI)*.7)}
   // ele não roda só: inclina o corpo e leva a cabeça até ao rato
- const fx=lk?(MOB?0:-.6):mx*(MOB?.6:1),fy=lk?(MOB?.5:.2):my,dn=Math.max(0,fy);
+ const fx=lk?(MOB?0:-.6):mx*(MOB?.6:1),fy=lk?(MOB?.5:.2):my*(MOB?.55:1),dn=Math.max(0,fy);
  leanX+=(fy*.085-leanX)*.045;leanZ+=(-fx*.07-leanZ)*.045;near+=(dn*.26-near)*.045;turn+=(fx*.2-turn)*.045;
  HO.lerp(_t.set(fx*.016,-fy*.01,dn*.018),.06);
- who.position.set(turn*(MOB?.07:.25),-1+hop*.07,near);who.rotation.x=leanX;who.rotation.z=Math.sin(t*.0011)*.014+leanZ;who.rotation.y=FACE+Math.sin(t*.0007)*.05+turn;
+ who.position.set(turn*(MOB?.07:.25),-1+hop*.07,near);who.rotation.x=leanX;who.rotation.z=Math.sin(t*.0011)*.014+leanZ;who.rotation.y=FACE+Math.sin(t*.0007)*.05+turn+spin;
  headPivot.rotation.y+=(ty-headPivot.rotation.y)*.07;headPivot.rotation.x+=(tx-hop*.08-headPivot.rotation.x)*.07;
  headPivot.rotation.z=Math.sin(t*.0009)*.035-(headPivot.rotation.y-HEAD0)*.1+tilt;
  const br=Math.sin(t*.0016);bodyG.scale.set(1+br*.004-hop*.012,1+br*.007+hop*.022,1+br*.006-hop*.012);headPivot.position.set(PIV.x+HO.x,PIV.y*(1+br*.007+hop*.022)+HO.y,PIV.z+HO.z);
@@ -520,7 +584,7 @@ function loop(t){
  cubes.forEach((c,i)=>{const a=t*.0011+i*2.1;c.position.set(c.userData.c.x+Math.sin(a*.7)*.008,c.userData.c.y+Math.sin(a)*.02,c.userData.c.z);c.rotation.set(Math.sin(a*.6)*.5,a*.5,Math.cos(a*.5)*.3)});
  if(blink>0)blink-=dt*5;else if(Math.random()<.004)blink=1;
  draw(t);renderer.render(scene,cam);requestAnimationFrame(loop)}
-document.fonts.ready.then(()=>{size();requestAnimationFrame(loop)});
+requestAnimationFrame(loop);document.fonts.ready.then(size);
 </script>
 <script type="text/plain" id="glb"></script>
 <script type="text/plain" id="p2"></script>
